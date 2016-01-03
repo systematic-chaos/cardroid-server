@@ -1,0 +1,710 @@
+/*@lineinfo:filename=TripOffer*/ /*@lineinfo:user-code*/ /*@lineinfo:1^1*/package uclm.esi.cardroid.data.oracle;
+
+import java.sql.SQLException;
+import java.sql.Connection;
+
+import oracle.sql.ORAData;
+import oracle.sql.ORADataFactory;
+import oracle.sql.Datum;
+
+import sqlj.runtime.ref.DefaultContext;
+
+import uclm.esi.cardroid.data.ICar;
+import uclm.esi.cardroid.data.IDateTime;
+import uclm.esi.cardroid.data.IPlace;
+import uclm.esi.cardroid.data.ITripOffer;
+import uclm.esi.cardroid.data.IUser;
+
+public class TripOffer extends TripOfferTyp implements ORAData, ORADataFactory,
+                                                       ITripOffer {
+    private static final TripOffer _TripOfferFactory = new TripOffer();
+
+    public static ORADataFactory getORADataFactory() {
+        return _TripOfferFactory;
+    }
+
+    public TripOffer() {
+        super();
+    }
+
+    public TripOffer(Connection conn) throws SQLException {
+        super(conn);
+    }
+
+    public TripOffer(DefaultContext ctx) throws SQLException {
+        super(ctx);
+    }
+
+    public TripOffer(Place from, Place to, DateTime datetime, User driver,
+                     Car car, int availableSeats, double price,
+                     TripOffer_AllowedVarray allow) {
+        setFromPlace(from);
+        setToPlace(to);
+        setDateTime(datetime);
+        setDriver(driver);
+        setCar(car);
+        setNSeats(availableSeats);
+        setPrice(price);
+        setAllowed(allow);
+    }
+
+    public TripOffer(Place from, Place to, DateTime datetime,
+                     DateTime returnDatetime, User driver, Car car,
+                     int availableSeats, double price,
+                     TripOffer_AllowedVarray allow) {
+        setFromPlace(from);
+        setToPlace(to);
+        setDateTime(datetime);
+        setReturnDateTime(returnDatetime);
+        setDriver(driver);
+        setCar(car);
+        setNSeats(availableSeats);
+        setPrice(price);
+        setAllowed(allow);
+    }
+
+    public TripOffer(Place from, Place to, DateTime datetime, User driver,
+                     Car car, int availableSeats, double price,
+                     TripOffer_AllowedVarray allow,
+                     Trip_WeekDaysVarray weekDays, String periodicity) {
+        setFromPlace(from);
+        setToPlace(to);
+        setDateTime(datetime);
+        setDriver(driver);
+        setCar(car);
+        setNSeats(availableSeats);
+        setPrice(price);
+        setAllowed(allow);
+        setWeekDays(weekDays);
+        setPeriodicity(periodicity);
+    }
+
+    public TripOffer(Place from, Place to, DateTime datetime,
+                     DateTime returnDatetime, User driver, Car car,
+                     int availableSeats, double price,
+                     TripOffer_AllowedVarray allow,
+                     Trip_WeekDaysVarray weekDays, String periodicity) {
+        setFromPlace(from);
+        setToPlace(to);
+        setDateTime(datetime);
+        setReturnDateTime(returnDatetime);
+        setDriver(driver);
+        setCar(car);
+        setNSeats(availableSeats);
+        setPrice(price);
+        setAllowed(allow);
+        setWeekDays(weekDays);
+        setPeriodicity(periodicity);
+    }
+
+    public TripOffer(Place fromPlace, Place toPlace, DateTime datetime,
+                     int nSeats, DateTime returnDatetime,
+                     Trip_WeekDaysVarray weekDays, String periodicity,
+                     int distance, String characteristics, User driver,
+                     TripOffer_WaypointCollection waypoints, Car car,
+                     TripOffer_PassengerCollection passengers, double price,
+                     TripOffer_AllowedVarray allowed) {
+        setFromPlace(fromPlace);
+        setToPlace(toPlace);
+        setDateTime(datetime);
+        setNSeats(nSeats);
+        setReturnDateTime(returnDatetime);
+        setWeekDays(weekDays);
+        setPeriodicity(periodicity);
+        setDistance(distance);
+        setCharacteristics(characteristics);
+        setDriver(driver);
+        setWaypoints(waypoints);
+        setCar(car);
+        setPassengers(passengers);
+        setPrice(price);
+        setAllowed(allowed);
+    }
+
+    /* ORAData interface */
+
+    protected ORAData createExact(Datum d, int sqlType) throws SQLException {
+        return create(new TripOffer(), d, sqlType);
+    }
+
+    /* TripOfferInterface interface */
+
+    public ITripOffer newInstance(ITripOffer tripOfferObject) {
+        if (tripOfferObject == null)
+            return null;
+        if (tripOfferObject instanceof TripOffer)
+            return tripOfferObject;
+        Place from = new Place().newInstance(tripOfferObject.getFromPlace());
+        Place to = new Place().newInstance(tripOfferObject.getToPlace());
+        DateTime datetime =
+            new DateTime().newInstance(tripOfferObject.getDateTime());
+        DateTime returnDatetime =
+            new DateTime().newInstance(tripOfferObject.getReturnDateTime());
+        char[] weekDays = tripOfferObject.getWeekDays();
+        String[] weekDaysStr = new String[weekDays.length];
+        for (int n = 0; n < weekDays.length; n++) {
+            weekDaysStr[n] = String.valueOf(weekDays[n]);
+        }
+        Trip_WeekDaysVarray weekDaysVarray =
+            new Trip_WeekDaysVarray(weekDaysStr);
+        User driver = new User().newInstance(tripOfferObject.getDriver());
+        IPlace[] waypoints = tripOfferObject.getWaypoints();
+        Waypoint[] wp = new Waypoint[waypoints.length];
+        for (int n = 0; n < waypoints.length; n++) {
+            wp[n] = new Waypoint().newInstance(waypoints[n]);
+        }
+        TripOffer_WaypointCollection waypointsCollection =
+            new TripOffer_WaypointCollection(wp);
+        Car car = new Car().newInstance(tripOfferObject.getCar());
+        IUser[] passengers = tripOfferObject.getPassengers();
+        User[] p = new User[passengers.length];
+        for (int n = 0; n < passengers.length; n++) {
+            p[n] = new User().newInstance(passengers[n]);
+        }
+        TripOffer_PassengerCollection passengersCollection =
+            new TripOffer_PassengerCollection(p);
+        boolean[] allowed = tripOfferObject.getAllowed();
+        String[] allowedStr = new String[allowed.length];
+        for (int n = 0; n < allowed.length; n++) {
+            allowedStr[n] = String.valueOf(allowed[n]);
+        }
+        TripOffer_AllowedVarray allowedVarray =
+            new TripOffer_AllowedVarray(allowedStr);
+        return new TripOffer(from, to, datetime, tripOfferObject.getNSeats(),
+                             returnDatetime, weekDaysVarray,
+                             tripOfferObject.getPeriodicity().name(),
+                             tripOfferObject.getDistance(),
+                             tripOfferObject.getCharacteristics(), driver,
+                             waypointsCollection, car, passengersCollection,
+                             tripOfferObject.getPrice(), allowedVarray);
+    }
+
+    public void setDateTime(IDateTime datetime) {
+        try {
+            super.setDatetime(new DateTime().newInstance(datetime));
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+    }
+
+    @Override
+    public DateTime getDateTime() {
+        DateTime datetime = null;
+        try {
+            datetime = (DateTime)super.getDatetime();
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+        return datetime;
+    }
+
+    public void setReturnDateTime(IDateTime returnDatetime) {
+        try {
+            super.setReturnDatetime(new DateTime().newInstance(returnDatetime));
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+    }
+
+    @Override
+    public DateTime getReturnDateTime() {
+        DateTime returnDatetime = null;
+        try {
+            returnDatetime = (DateTime)super.getReturnDatetime();
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+        return returnDatetime;
+    }
+
+    public void setDriver(IUser driver) {
+        try {
+            super.setTripDriver(new User().newInstance(driver));
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+    }
+
+    public User getDriver() {
+        User driver = null;
+        try {
+            driver = super.getDriver();
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+        return driver;
+    }
+
+    public Waypoint[] getWaypoints() {
+        Waypoint[] waypoints = null;
+        try {
+            waypoints = super.getTripWaypoints().getArray();
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+        return waypoints;
+    }
+
+    public void setWaypoints(TripOffer_WaypointCollection waypoints) {
+        try {
+            super.setWaypoints(waypoints);
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+    }
+
+    public void setWaypoints(IPlace[] waypoints) {
+        Waypoint[] wp = new Waypoint[waypoints.length];
+        for (int n = 0; n < waypoints.length; n++) {
+            wp[n] = new Waypoint().newInstance(waypoints[n]);
+        }
+        try {
+            super.setWaypoints(new TripOffer_WaypointCollection(wp));
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+    }
+
+    public boolean addWaypoint(IPlace waypoint) {
+        try {
+            super.addTripWaypoint(new Place().newInstance(waypoint));
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+        return true;
+    }
+
+    public void setPassengers(TripOffer_PassengerCollection passengers) {
+        try {
+            super.setPassengers(passengers);
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+    }
+
+    public void setPassengers(IUser[] passengers) {
+        User[] p = new User[passengers.length];
+        try {
+            for (int n = 0; n < passengers.length; n++) {
+                p[n] = new User().newInstance(passengers[n]);
+            }
+            super.setPassengers(new TripOffer_PassengerCollection(p));
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+    }
+
+    public User[] getPassengers() {
+        User[] passengers = null;
+        try {
+            User[] p = super.getPassengersCollection().getArray();
+            passengers = new User[p.length];
+            for (int n = 0; n < passengers.length; n++) {
+                passengers[n] = p[n];
+            }
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+        return passengers;
+    }
+
+    public boolean addPassenger(IUser passenger) {
+        try {
+            super.addTripPassenger(new User().newInstance(passenger));
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+        return true;
+    }
+
+    public boolean removePassenger(IUser passenger) {
+        boolean has = true;
+        try {
+            super.removeTripPassenger(new User().newInstance(passenger));
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+            has = false;
+        }
+        return has;
+    }
+
+    public void setCar(ICar car) {
+        try {
+            super.setTripCar(new Car().newInstance(car));
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+    }
+
+    public Car getCar() {
+        Car car = null;
+        try {
+            car = super.getCar();
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+        return car;
+    }
+
+    public void setPrice(double price) {
+        try {
+            super.setPrice(price);
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+    }
+
+    public double getPrice() {
+        double price = 0.;
+        try {
+            price = super.getPrice();
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+        return price;
+    }
+
+    @Override
+    public void setAllowed(TripOffer_AllowedVarray allowedVarray) {
+        try {
+            super.setAllowed(allowedVarray);
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+    }
+
+    public void setAllowed(boolean[] allowed) {
+        String[] allowedStr = new String[allowed.length];
+        for (int n = 0; n < allowed.length; n++) {
+            allowedStr[n] = String.valueOf(allowed[n]);
+        }
+        try {
+            super.setAllowed(new TripOffer_AllowedVarray(allowedStr));
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+    }
+
+    public boolean[] getAllowed() {
+        boolean[] allowed = null;
+        try {
+            String[] allowedStr = super.getAllowedVarray().getArray();
+            allowed = new boolean[allowedStr.length];
+            for (int n = 0; n < allowed.length; n++) {
+                allowed[n] = Boolean.getBoolean(allowedStr[n]);
+            }
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+        return allowed;
+    }
+
+
+    /* superclass methods */
+
+    public boolean addPassenger(User passenger) {
+
+        try {
+            User __jRt_622 = passenger;
+            super.addTripPassenger(__jRt_622);
+
+        } catch (java.sql.SQLException except) {
+            except.printStackTrace();
+            System.err.println(except.getClass().getName() + ": " +
+                               except.getMessage());
+        }
+        return true;
+    }
+
+    public boolean addWaypoint(Place waypoint) {
+
+        try {
+            Place __jRt_624 = waypoint;
+            super.addTripWaypoint(__jRt_624);
+
+        } catch (java.sql.SQLException except) {
+            except.printStackTrace();
+            System.err.println(except.getClass().getName() + ": " +
+                               except.getMessage());
+        }
+        return true;
+    }
+
+    public void clearPassengers() {
+
+        try {
+            super.clearPassengersCollection();
+
+        } catch (java.sql.SQLException except) {
+            except.printStackTrace();
+            System.err.println(except.getClass().getName() + ": " +
+                               except.getMessage());
+        }
+    }
+
+    public void clearWaypoints() {
+
+        try {
+            super.clearWaypointsCollection();
+
+        } catch (java.sql.SQLException except) {
+            except.printStackTrace();
+            System.err.println(except.getClass().getName() + ": " +
+                               except.getMessage());
+        }
+    }
+
+    public java.sql.Timestamp compareTo() throws SQLException {
+
+        java.sql.Timestamp __jRt_0 = null;
+        try {
+            __jRt_0 = super.compareTo();
+
+        } catch (java.sql.SQLException except) {
+            except.printStackTrace();
+            throw new java.sql.SQLException(except.getClass().getName() +
+                                            ": " + except.getMessage());
+        }
+        return __jRt_0;
+    }
+
+    public int getNPassengers() {
+
+        int __jRt_0 = 0;
+        try {
+            __jRt_0 = super.getNPassengers();
+
+        } catch (java.sql.SQLException except) {
+            except.printStackTrace();
+            System.err.println(except.getClass().getName() + ": " +
+                               except.getMessage());
+        }
+        return __jRt_0;
+    }
+
+    public int getNWaypoints() {
+
+        int __jRt_0 = 0;
+        try {
+            __jRt_0 = super.getNWaypoints();
+
+        } catch (java.sql.SQLException except) {
+            except.printStackTrace();
+            System.err.println(except.getClass().getName() + ": " +
+                               except.getMessage());
+        }
+        return __jRt_0;
+    }
+
+    public boolean removePassenger(User passenger) {
+
+        boolean __jRt_0 = true;
+        try {
+            User __jRt_626 = passenger;
+            super.removeTripPassenger(__jRt_626);
+
+        } catch (java.sql.SQLException except) {
+            __jRt_0 = false;
+            except.printStackTrace();
+            System.err.println(except.getClass().getName() + ": " +
+                               except.getMessage());
+        }
+        return __jRt_0;
+    }
+
+    public boolean removeWaypoint(int pos) {
+
+        boolean __jRt_0 = true;
+        try {
+            int __jRt_628 = pos;
+            super.removeTripWaypoint(__jRt_628);
+
+        } catch (java.sql.SQLException except) {
+            __jRt_0 = false;
+            except.printStackTrace();
+            System.err.println(except.getClass().getName() + ": " +
+                               except.getMessage());
+        }
+        return __jRt_0;
+    }
+
+    public uclm.esi.cardroid.data.oracle.DateTimePrefstripOfferTyp_Out tripOfferTyp(Place fromPlace,
+                                                                                    Place toPlace,
+                                                                                    DateTime datetime,
+                                                                                    User driver,
+                                                                                    Car car,
+                                                                                    int availableSeats,
+                                                                                    double price,
+                                                                                    TripOffer_AllowedVarray allowed) throws java.sql.SQLException {
+
+        TripOffer __jRt_0 = null;
+        uclm.esi.cardroid.data.oracle.DateTimePrefstripOfferTyp_Out __jRt_648 =
+            new uclm.esi.cardroid.data.oracle.DateTimePrefstripOfferTyp_Out();
+        try {
+            TripOffer_AllowedVarray __jRt_644 = allowed;
+            double __jRt_642 = price;
+            int __jRt_640 = availableSeats;
+            Car __jRt_638 = car;
+            User __jRt_636 = driver;
+            DateTime __jRt_634 = datetime;
+            Place __jRt_632 = toPlace;
+            Place __jRt_630 = fromPlace;
+            TripOffer[] __jRt_646 = new TripOffer[1];
+            __jRt_0 =
+                    super.tripOfferTyp(__jRt_630, __jRt_632, __jRt_634, __jRt_636,
+                                       __jRt_638, __jRt_640, __jRt_642,
+                                       __jRt_644, __jRt_646);
+            __jRt_648.setJptOut(__jRt_646[0]);
+            __jRt_648.setReturn(__jRt_0);
+
+        } catch (java.sql.SQLException except) {
+            except.printStackTrace();
+            throw new java.sql.SQLException(except.getClass().getName() +
+                                            ": " + except.getMessage());
+        }
+        return __jRt_648;
+    }
+
+    public uclm.esi.cardroid.data.oracle.DateTimePrefstripOfferTyp_Out4 tripOfferTyp(Place fromPlace,
+                                                                                     Place toPlace,
+                                                                                     DateTime datetime,
+                                                                                     DateTime returnDatetime,
+                                                                                     User driver,
+                                                                                     Car car,
+                                                                                     int availableSeats,
+                                                                                     double price,
+                                                                                     TripOffer_AllowedVarray allowed) throws java.sql.SQLException {
+
+        TripOffer __jRt_0 = null;
+        uclm.esi.cardroid.data.oracle.DateTimePrefstripOfferTyp_Out4 __jRt_669 =
+            new uclm.esi.cardroid.data.oracle.DateTimePrefstripOfferTyp_Out4();
+        try {
+            TripOffer_AllowedVarray __jRt_665 = allowed;
+            double __jRt_663 = price;
+            int __jRt_661 = availableSeats;
+            Car __jRt_659 = car;
+            User __jRt_657 = driver;
+            DateTime __jRt_655 = returnDatetime;
+            DateTime __jRt_653 = datetime;
+            Place __jRt_651 = toPlace;
+            Place __jRt_649 = fromPlace;
+            TripOffer[] __jRt_667 = new TripOffer[1];
+            __jRt_0 =
+                    super.tripOfferTyp(__jRt_649, __jRt_651, __jRt_653, __jRt_655,
+                                       __jRt_657, __jRt_659, __jRt_661,
+                                       __jRt_663, __jRt_665, __jRt_667);
+            __jRt_669.setJptOut(__jRt_667[0]);
+            __jRt_669.setReturn(__jRt_0);
+
+        } catch (java.sql.SQLException except) {
+            except.printStackTrace();
+            throw new java.sql.SQLException(except.getClass().getName() +
+                                            ": " + except.getMessage());
+        }
+        return __jRt_669;
+    }
+
+    public uclm.esi.cardroid.data.oracle.DateTimePrefstripOfferTyp_Out5 tripOfferTyp(Place fromPlace,
+                                                                                     Place toPlace,
+                                                                                     DateTime datetime,
+                                                                                     User driver,
+                                                                                     Car car,
+                                                                                     int availableSeats,
+                                                                                     double price,
+                                                                                     TripOffer_AllowedVarray allowed,
+                                                                                     Trip_WeekDaysVarray weekDays,
+                                                                                     String periodicity) throws java.sql.SQLException {
+
+        TripOffer __jRt_0 = null;
+        uclm.esi.cardroid.data.oracle.DateTimePrefstripOfferTyp_Out5 __jRt_692 =
+            new uclm.esi.cardroid.data.oracle.DateTimePrefstripOfferTyp_Out5();
+        try {
+            String __jRt_688 = periodicity;
+            Trip_WeekDaysVarray __jRt_686 = weekDays;
+            TripOffer_AllowedVarray __jRt_684 = allowed;
+            double __jRt_682 = price;
+            int __jRt_680 = availableSeats;
+            Car __jRt_678 = car;
+            User __jRt_676 = driver;
+            DateTime __jRt_674 = datetime;
+            Place __jRt_672 = toPlace;
+            Place __jRt_670 = fromPlace;
+            TripOffer[] __jRt_690 = new TripOffer[1];
+            __jRt_0 =
+                    super.tripOfferTyp(__jRt_670, __jRt_672, __jRt_674, __jRt_676,
+                                       __jRt_678, __jRt_680, __jRt_682,
+                                       __jRt_684, __jRt_686, __jRt_688,
+                                       __jRt_690);
+            __jRt_692.setJptOut(__jRt_690[0]);
+            __jRt_692.setReturn(__jRt_0);
+
+        } catch (java.sql.SQLException except) {
+            except.printStackTrace();
+            throw new java.sql.SQLException(except.getClass().getName() +
+                                            ": " + except.getMessage());
+        }
+        return __jRt_692;
+    }
+
+    public uclm.esi.cardroid.data.oracle.DateTimePrefstripOfferTyp_Out6 tripOfferTyp(Place fromPlace,
+                                                                                     Place toPlace,
+                                                                                     DateTime datetime,
+                                                                                     DateTime returnDatetime,
+                                                                                     User driver,
+                                                                                     Car car,
+                                                                                     int availableSeats,
+                                                                                     double price,
+                                                                                     TripOffer_AllowedVarray allowed,
+                                                                                     Trip_WeekDaysVarray weekDays,
+                                                                                     String periodicity) throws java.sql.SQLException {
+
+        TripOffer __jRt_0 = null;
+        uclm.esi.cardroid.data.oracle.DateTimePrefstripOfferTyp_Out6 __jRt_717 =
+            new uclm.esi.cardroid.data.oracle.DateTimePrefstripOfferTyp_Out6();
+        try {
+            String __jRt_713 = periodicity;
+            Trip_WeekDaysVarray __jRt_711 = weekDays;
+            TripOffer_AllowedVarray __jRt_709 = allowed;
+            double __jRt_707 = price;
+            int __jRt_705 = availableSeats;
+            Car __jRt_703 = car;
+            User __jRt_701 = driver;
+            DateTime __jRt_699 = returnDatetime;
+            DateTime __jRt_697 = datetime;
+            Place __jRt_695 = toPlace;
+            Place __jRt_693 = fromPlace;
+            TripOffer[] __jRt_715 = new TripOffer[1];
+            __jRt_0 =
+                    super.tripOfferTyp(__jRt_693, __jRt_695, __jRt_697, __jRt_699,
+                                       __jRt_701, __jRt_703, __jRt_705,
+                                       __jRt_707, __jRt_709, __jRt_711,
+                                       __jRt_713, __jRt_715);
+            __jRt_717.setJptOut(__jRt_715[0]);
+            __jRt_717.setReturn(__jRt_0);
+
+        } catch (java.sql.SQLException except) {
+            except.printStackTrace();
+            throw new java.sql.SQLException(except.getClass().getName() +
+                                            ": " + except.getMessage());
+        }
+        return __jRt_717;
+    }
+
+    public TripOfferRef getTripOfferRef() {
+        TripOfferRef ref = new TripOfferRef();
+        try {
+            ref.setValue(this);
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+        return ref;
+    }
+
+    public void setTripOfferRef(TripOfferRef ref) {
+        try {
+            ref.setValue(this);
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+    }
+}/*@lineinfo:generated-code*/

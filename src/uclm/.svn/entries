@@ -1,0 +1,31 @@
+10
+
+dir
+30
+http://subversion.assembla.com/svn/esicr/trunk/Oracle/src/uclm
+http://subversion.assembla.com/svn/esicr
+
+
+
+2014-03-18T23:13:34.532425Z
+29
+ThanatosDreamslayer
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+2ad370b4-bdb4-472d-bba3-dcf9a23a9e15
+
+esi
+dir
+

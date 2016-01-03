@@ -1,0 +1,508 @@
+/*@lineinfo:filename=Trip*/ /*@lineinfo:user-code*/ /*@lineinfo:1^1*/package uclm.esi.cardroid.data.oracle;
+
+import java.sql.SQLException;
+import java.sql.Connection;
+
+import oracle.sql.ORAData;
+import oracle.sql.ORADataFactory;
+import oracle.sql.Datum;
+
+import sqlj.runtime.ref.DefaultContext;
+
+import uclm.esi.cardroid.data.IDate;
+import uclm.esi.cardroid.data.IPlace;
+import uclm.esi.cardroid.data.ITrip;
+
+public class Trip extends TripTyp implements ORAData, ORADataFactory, ITrip {
+    private static final Trip _TripFactory = new Trip();
+
+    public static ORADataFactory getORADataFactory() {
+        return _TripFactory;
+    }
+
+    protected Trip() {
+        super();
+    }
+
+    protected Trip(Connection conn) throws SQLException {
+        super(conn);
+    }
+
+    protected Trip(DefaultContext ctx) throws SQLException {
+        super(ctx);
+    }
+
+    public Trip(Place fromPlace, Place toPlace, Date datetime, int nSeats,
+                Date returnDatetime, Trip_WeekDaysVarray weekDays,
+                String periodicity, int distance, String characteristics) {
+        setFromPlace(fromPlace);
+        setToPlace(toPlace);
+        setDateTime(datetime);
+        setNSeats(nSeats);
+        setReturnDateTime(returnDatetime);
+        setWeekDays(weekDays);
+        setPeriodicity(periodicity);
+        setDistance(distance);
+        setCharacteristics(characteristics);
+    }
+
+    public Trip(Place fromPlace, Place toPlace, Date datetime, int nSeats) {
+        setFromPlace(fromPlace);
+        setToPlace(toPlace);
+        setDateTime(datetime);
+        setNSeats(nSeats);
+    }
+
+    public Trip(Place fromPlace, Place toPlace, Date datetime, int nSeats,
+                Date returnDatetime) {
+        setFromPlace(fromPlace);
+        setToPlace(toPlace);
+        setDateTime(datetime);
+        setNSeats(nSeats);
+        setReturnDateTime(returnDatetime);
+    }
+
+    public Trip(Place fromPlace, Place toPlace, Date datetime, int nSeats,
+                Trip_WeekDaysVarray weekDays, String periodicity) {
+        setFromPlace(fromPlace);
+        setToPlace(toPlace);
+        setDateTime(datetime);
+        setNSeats(nSeats);
+        setWeekDays(weekDays);
+        setPeriodicity(periodicity);
+    }
+
+    public Trip(Place fromPlace, Place toPlace, Date datetime, int nSeats,
+                Date returnDatetime, Trip_WeekDaysVarray weekDays,
+                String periodicity) {
+        setFromPlace(fromPlace);
+        setToPlace(toPlace);
+        setDateTime(datetime);
+        setNSeats(nSeats);
+        setReturnDateTime(returnDatetime);
+        setWeekDays(weekDays);
+        setPeriodicity(periodicity);
+    }
+
+    /* ORAData interface */
+
+    protected ORAData createExact(Datum d, int sqlType) throws SQLException {
+        return create(new Trip(), d, sqlType);
+    }
+
+    /* ITrip interface */
+
+    public Trip newInstance(ITrip tripObject) {
+        if (tripObject == null)
+            return null;
+        if (tripObject instanceof Trip)
+            return (Trip)tripObject;
+        Place from = new Place().newInstance(tripObject.getFromPlace());
+        Place to = new Place().newInstance(tripObject.getToPlace());
+        Date datetime = new Date().newInstance(tripObject.getDateTime());
+        Date returnDatetime =
+            new Date().newInstance(tripObject.getReturnDateTime());
+        char[] weekDays = tripObject.getWeekDays();
+        String[] weekDaysStr = new String[weekDays.length];
+        for (int n = 0; n < weekDays.length; n++) {
+            weekDaysStr[n] = String.valueOf(weekDays[n]);
+        }
+        Trip_WeekDaysVarray weekDaysVarray =
+            new Trip_WeekDaysVarray(weekDaysStr);
+        return new Trip(from, to, datetime, tripObject.getNSeats(),
+                        returnDatetime, weekDaysVarray,
+                        tripObject.getPeriodicity().name());
+    }
+
+    public void setTripId(int tripId) {
+        try {
+            super.setTripId(tripId);
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+    }
+
+    public int getTripId() {
+        int tripId = 0;
+        try {
+            tripId = super.getTripId();
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+        return tripId;
+    }
+
+    public void setFromPlace(IPlace from) {
+        try {
+            if (from instanceof Place) {
+                super.setPlace1((Place)from);
+            } else {
+                super.setPlace1(new Place().newInstance(from));
+            }
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+    }
+
+    public Place getFromPlace() {
+        Place place = null;
+        try {
+            place = super.getPlace1();
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+        return place;
+    }
+
+    public void setToPlace(IPlace to) {
+        try {
+            if (to instanceof Place) {
+                super.setPlace2((Place)to);
+            } else {
+                super.setPlace2(new Place().newInstance(to));
+            }
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+    }
+
+    public Place getToPlace() {
+        Place place = null;
+        try {
+            place = super.getPlace2();
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+        return place;
+    }
+
+    public void setDateTime(IDate datetime) {
+        try {
+            if (datetime instanceof Date) {
+                super.setDatetime((Date)datetime);
+            } else {
+                super.setDatetime(new Date().newInstance(datetime));
+            }
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+    }
+
+    public Date getDateTime() {
+        Date datetime = null;
+        try {
+            datetime = super.getDatetime();
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+        return datetime;
+    }
+
+    @Override
+    public void setNSeats(int nSeats) {
+        try {
+            super.setNSeats(nSeats);
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+    }
+
+    @Override
+    public int getNSeats() {
+        int nSeats = 0;
+        try {
+            nSeats = super.getNSeats();
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+        return nSeats;
+    }
+
+    public void setReturnDateTime(IDate returnDatetime) {
+        try {
+            if (returnDatetime instanceof Date) {
+                super.setReturnDatetime((Date)returnDatetime);
+            } else {
+                super.setReturnDatetime(new Date().newInstance(returnDatetime));
+            }
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+    }
+
+    public Date getReturnDateTime() {
+        Date returnDatetime = null;
+        try {
+            returnDatetime = super.getReturnDatetime();
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+        return returnDatetime;
+    }
+
+    @Override
+    public void setWeekDays(Trip_WeekDaysVarray weekDaysVarray) {
+        try {
+            super.setWeekDays(weekDaysVarray);
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+    }
+
+    public void setWeekDays(char[] weekDays) {
+        String[] weekDaysStr = new String[weekDays.length];
+        for (int n = 0; n < weekDays.length; n++) {
+            weekDaysStr[n] = String.valueOf(weekDays[n]);
+        }
+        try {
+            super.setWeekDays(new Trip_WeekDaysVarray(weekDaysStr));
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+    }
+
+    public char[] getWeekDays() {
+        char[] weekDaysChar = null;
+        try {
+            String[] weekDays = super.getWeekDaysVarray().getArray();
+            weekDaysChar = new char[weekDays.length];
+            for (int n = 0; n < weekDays.length; n++) {
+                weekDaysChar[n] = weekDays[n].charAt(0);
+            }
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+        return weekDaysChar;
+    }
+
+    public void setPeriodicity(Periodicity periodicity) {
+        try {
+            super.setPeriodicity(periodicity.name());
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+    }
+
+    @Override
+    public void setPeriodicity(String periodicityName) {
+        try {
+            super.setPeriodicity(periodicityName);
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+    }
+
+    public Periodicity getPeriodicity() {
+        Periodicity periodicity = null;
+        try {
+            periodicity =
+                    ITrip.Periodicity.valueOf(super.getPeriodicityName());
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+        return periodicity;
+    }
+
+    public void setWeekDaysPeriodicity(char[] weekDays,
+                                       Periodicity periodicity) {
+        String[] weekDaysStr = new String[weekDays.length];
+        for (int n = 0; n < weekDays.length; n++) {
+            weekDaysStr[n] = String.valueOf(weekDays[n]);
+        }
+        try {
+            super.setWeekDays(new Trip_WeekDaysVarray(weekDaysStr));
+            super.setPeriodicity(periodicity.name());
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+    }
+
+    @Override
+    public void setDistance(int distance) {
+        try {
+            super.setDistance(distance);
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+    }
+
+    @Override
+    public int getDistance() {
+        int distance = 0;
+        try {
+            super.setDistance(distance);
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+        return distance;
+    }
+
+    @Override
+    public void setCharacteristics(String characteristics) {
+        try {
+            super.setCharacteristics(characteristics);
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+    }
+
+    @Override
+    public String getCharacteristics() {
+        String characteristics = null;
+        try {
+            characteristics = super.getCharacteristics();
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+        return characteristics;
+    }
+
+    /* superclass methods */
+
+    public java.sql.Timestamp compareTo() throws java.sql.SQLException {
+
+        java.sql.Timestamp __jRt_0 = null;
+        try {
+            __jRt_0 = super.compareTo();
+
+        } catch (java.sql.SQLException except) {
+            except.printStackTrace();
+            throw new java.sql.SQLException(except.getClass().getName() +
+                                            ": " + except.getMessage());
+        }
+        return __jRt_0;
+    }
+
+    public uclm.esi.cardroid.data.oracle.DateTimePrefstripTyp_Out tripTyp(Place fromPlace,
+                                                                          Place toPlace,
+                                                                          Date datetime,
+                                                                          Date returnDatetime,
+                                                                          int nSeats,
+                                                                          Trip_WeekDaysVarray weekDays,
+                                                                          String periodicity) throws java.sql.SQLException {
+
+        Trip __jRt_0 = null;
+        uclm.esi.cardroid.data.oracle.DateTimePrefstripTyp_Out __jRt_798 =
+            new uclm.esi.cardroid.data.oracle.DateTimePrefstripTyp_Out();
+        try {
+            String __jRt_794 = periodicity;
+            Trip_WeekDaysVarray __jRt_792 = weekDays;
+            int __jRt_790 = nSeats;
+            Date __jRt_788 = returnDatetime;
+            Date __jRt_786 = datetime;
+            Place __jRt_784 = toPlace;
+            Place __jRt_782 = fromPlace;
+            Trip[] __jRt_796 = new Trip[1];
+            __jRt_0 =
+                    super.tripTyp(__jRt_782, __jRt_784, __jRt_786, __jRt_788, __jRt_790,
+                                  __jRt_792, __jRt_794, __jRt_796);
+            __jRt_798.setJptOut(__jRt_796[0]);
+            __jRt_798.setReturn(__jRt_0);
+
+        } catch (java.sql.SQLException except) {
+            except.printStackTrace();
+            throw new java.sql.SQLException(except.getClass().getName() +
+                                            ": " + except.getMessage());
+        }
+        return __jRt_798;
+    }
+
+    public uclm.esi.cardroid.data.oracle.DateTimePrefstripTyp_Out10 tripTyp(Place fromPlace,
+                                                                            Place toPlace,
+                                                                            Date datetime,
+                                                                            int nSeats,
+                                                                            Trip_WeekDaysVarray weekDays,
+                                                                            String periodicity) throws java.sql.SQLException {
+
+        Trip __jRt_0 = null;
+        uclm.esi.cardroid.data.oracle.DateTimePrefstripTyp_Out10 __jRt_813 =
+            new uclm.esi.cardroid.data.oracle.DateTimePrefstripTyp_Out10();
+        try {
+            String __jRt_809 = periodicity;
+            Trip_WeekDaysVarray __jRt_807 = weekDays;
+            int __jRt_805 = nSeats;
+            Date __jRt_803 = datetime;
+            Place __jRt_801 = toPlace;
+            Place __jRt_799 = fromPlace;
+            Trip[] __jRt_811 = new Trip[1];
+            __jRt_0 =
+                    super.tripTyp(__jRt_799, __jRt_801, __jRt_803, __jRt_805, __jRt_807,
+                                  __jRt_809, __jRt_811);
+            __jRt_813.setJptOut(__jRt_811[0]);
+            __jRt_813.setReturn(__jRt_0);
+
+        } catch (java.sql.SQLException except) {
+            except.printStackTrace();
+            throw new java.sql.SQLException(except.getClass().getName() +
+                                            ": " + except.getMessage());
+        }
+        return __jRt_813;
+    }
+
+    public uclm.esi.cardroid.data.oracle.DateTimePrefstripTyp_Out11 tripTyp(Place fromPlace,
+                                                                            Place toPlace,
+                                                                            Date datetime,
+                                                                            int nSeats) throws java.sql.SQLException {
+
+        Trip __jRt_0 = null;
+        uclm.esi.cardroid.data.oracle.DateTimePrefstripTyp_Out11 __jRt_824 =
+            new uclm.esi.cardroid.data.oracle.DateTimePrefstripTyp_Out11();
+        try {
+            int __jRt_820 = nSeats;
+            Date __jRt_818 = datetime;
+            Place __jRt_816 = toPlace;
+            Place __jRt_814 = fromPlace;
+            Trip[] __jRt_822 = new Trip[1];
+            __jRt_0 =
+                    super.tripTyp(__jRt_814, __jRt_816, __jRt_818, __jRt_820, __jRt_822);
+            __jRt_824.setJptOut(__jRt_822[0]);
+            __jRt_824.setReturn(__jRt_0);
+
+        } catch (java.sql.SQLException except) {
+            except.printStackTrace();
+            throw new java.sql.SQLException(except.getClass().getName() +
+                                            ": " + except.getMessage());
+        }
+        return __jRt_824;
+    }
+
+    public uclm.esi.cardroid.data.oracle.DateTimePrefstripTyp_Out12 tripTyp(Place fromPlace,
+                                                                            Place toPlace,
+                                                                            Date datetime,
+                                                                            Date returnDatetime,
+                                                                            int nSeats) throws java.sql.SQLException {
+
+        Trip __jRt_0 = null;
+        uclm.esi.cardroid.data.oracle.DateTimePrefstripTyp_Out12 __jRt_837 =
+            new uclm.esi.cardroid.data.oracle.DateTimePrefstripTyp_Out12();
+        try {
+            int __jRt_833 = nSeats;
+            Date __jRt_831 = returnDatetime;
+            Date __jRt_829 = datetime;
+            Place __jRt_827 = toPlace;
+            Place __jRt_825 = fromPlace;
+            Trip[] __jRt_835 = new Trip[1];
+            __jRt_0 =
+                    super.tripTyp(__jRt_825, __jRt_827, __jRt_829, __jRt_831, __jRt_833,
+                                  __jRt_835);
+            __jRt_837.setJptOut(__jRt_835[0]);
+            __jRt_837.setReturn(__jRt_0);
+
+        } catch (java.sql.SQLException except) {
+            except.printStackTrace();
+            throw new java.sql.SQLException(except.getClass().getName() +
+                                            ": " + except.getMessage());
+        }
+        return __jRt_837;
+    }
+
+    public TripRef getTripRef() throws SQLException {
+        TripRef ref = new TripRef();
+        ref.setValue(this);
+        return ref;
+    }
+
+    public void setTripRef(TripRef ref) throws SQLException {
+        ref.setValue(this);
+    }
+}/*@lineinfo:generated-code*/

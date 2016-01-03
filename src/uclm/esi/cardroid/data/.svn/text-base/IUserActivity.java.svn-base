@@ -1,0 +1,31 @@
+package uclm.esi.cardroid.data;
+
+public interface IUserActivity {
+
+    public IUserActivity newInstance(IUserActivity userActivityObject);
+
+    public void setUser(IUser activityUser);
+
+    public IUser getUser();
+
+    public void setTrip(ITrip activityTrip);
+
+    public ITrip getTrip();
+
+    public void setType(ActivityType activityType);
+
+    public ActivityType getType();
+
+    /**
+     * \class ActivityType
+     * enum type depicting the different types of activity an
+     * user can carry out
+     */
+    public static enum ActivityType {
+
+        TRIP_JOIN,
+        TRIP_REQUEST_ANSWERED,
+        TRIP_ACCEPT,
+        TRIP_REFUSE;
+    }
+}

@@ -1,0 +1,18 @@
+package uclm.esi.cardroid.data;
+
+public interface ITripRequest extends ITrip {
+
+    public ITripRequest newInstance(ITripRequest tripRequestObject);
+
+    public void setRequester(IUser requester);
+
+    public IUser getRequester();
+
+    public void setDateTime(IDateTimePrefs dateTimePrefsObject);
+
+    public IDateTimePrefs getDateTime();
+
+    public void setReturnDateTime(IDateTimePrefs dateTimePrefsObject);
+
+    public IDateTimePrefs getReturnDateTime();
+}

@@ -1,0 +1,27 @@
+package uclm.esi.cardroid.data;
+
+public interface IDateTimePrefs extends IDate {
+
+    public IDateTimePrefs newInstance(IDateTimePrefs dateTimePrefsObject);
+
+    public void setToleranceDays(int toleranceDays);
+
+    public int getToleranceDays();
+
+    public void setTimePreferences(TimePreferences timePreferences);
+
+    public TimePreferences getTimePreferences();
+
+    /**
+     * \class TimePreferences
+     * enum type depicting the values available to express
+     * time preferences
+     */
+    public static enum TimePreferences {
+
+        ANY,
+        MORNING,
+        AFTERNOON,
+        NIGHT;
+    }
+}

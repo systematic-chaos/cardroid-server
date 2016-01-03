@@ -1,0 +1,282 @@
+/*@lineinfo:filename=Place*/ /*@lineinfo:user-code*/ /*@lineinfo:1^1*/package uclm.esi.cardroid.data.oracle;
+
+import java.sql.Blob;
+import java.sql.SQLException;
+import java.sql.Connection;
+
+import oracle.sql.ORAData;
+import oracle.sql.ORADataFactory;
+import oracle.sql.Datum;
+
+import sqlj.runtime.ref.DefaultContext;
+
+import uclm.esi.cardroid.data.ILatLng;
+import uclm.esi.cardroid.data.IPlace;
+
+public class Place extends PlaceTyp implements ORAData, ORADataFactory,
+                                               IPlace {
+    private static final Place _PlaceFactory = new Place();
+
+    public static ORADataFactory getORADataFactory() {
+        return _PlaceFactory;
+    }
+
+    public Place() {
+        super();
+    }
+
+    public Place(Connection conn) throws SQLException {
+        super(conn);
+    }
+
+    public Place(DefaultContext ctx) throws SQLException {
+        super(ctx);
+    }
+
+    public Place(String name, LatLng coords, String description,
+                 java.sql.Blob snapshot) {
+        setName(name);
+        setCoordinates(coords);
+        setDescription(description);
+        setSnapshot(snapshot);
+    }
+
+    public Place(LatLng coords, String name) {
+        setCoordinates(coords);
+        setName(name);
+    }
+
+    public Place(LatLng coords, String name, java.sql.Blob snapshot) {
+        setCoordinates(coords);
+        setName(name);
+        setSnapshot(snapshot);
+    }
+
+    public Place(LatLng coords, String name, String description) {
+        setCoordinates(coords);
+        setName(name);
+        setDescription(description);
+    }
+
+    public Place(LatLng coords, String name, String description,
+                 java.sql.Blob snapshot) {
+        setCoordinates(coords);
+        setName(name);
+        setDescription(description);
+        setSnapshot(snapshot);
+    }
+
+    /* ORAData interface */
+
+    public ORAData create(Datum d, int sqlType) throws SQLException {
+        return create(new Place(), d, sqlType);
+    }
+
+    /* IPlace interface */
+
+    public Place newInstance(IPlace placeObject) {
+        if (placeObject == null)
+            return null;
+        if (placeObject instanceof Place)
+            return (Place)placeObject;
+        LatLng coords = new LatLng().newInstance(placeObject.getCoordinates());
+        return new Place(placeObject.getName(), coords,
+                         placeObject.getDescription(),
+                         placeObject.getSnapshot());
+    }
+
+    @Override
+    public void setName(String name) {
+        try {
+            super.setName(name);
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+    }
+
+    @Override
+    public String getName() {
+        String name = null;
+        try {
+            name = super.getName();
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+        return name;
+    }
+
+    public void setCoordinates(ILatLng coords) {
+        try {
+            if (coords instanceof LatLng) {
+                super.setCoords((LatLng)coords);
+            } else {
+                super.setCoords(new LatLng().newInstance(coords));
+            }
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+    }
+
+    public LatLng getCoordinates() {
+        LatLng coords = null;
+        try {
+            coords = super.getCoords();
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+        return coords;
+    }
+
+    @Override
+    public void setDescription(String description) {
+        try {
+            super.setDescription(description);
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+    }
+
+    @Override
+    public String getDescription() {
+        String description = null;
+        try {
+            description = super.getDescription();
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+        return description;
+    }
+
+    @Override
+    public void setSnapshot(Blob snapshot) {
+        try {
+            super.setSnapshot(snapshot);
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+    }
+
+    @Override
+    public Blob getSnapshot() {
+        Blob snapshot = null;
+        try {
+            snapshot = super.getSnapshot();
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+        return snapshot;
+    }
+
+
+    /* superclass methods */
+
+    public uclm.esi.cardroid.data.oracle.DateTimePrefsplaceTyp_Out placeTyp(LatLng coords,
+                                                                            String name) throws java.sql.SQLException {
+
+        Place __jRt_0 = null;
+        uclm.esi.cardroid.data.oracle.DateTimePrefsplaceTyp_Out __jRt_592 =
+            new uclm.esi.cardroid.data.oracle.DateTimePrefsplaceTyp_Out();
+        try {
+            String __jRt_588 = name;
+            LatLng __jRt_586 = coords;
+            Place[] __jRt_590 = new Place[1];
+            __jRt_0 = super.placeTyp(__jRt_586, __jRt_588, __jRt_590);
+            __jRt_592.setJptOut(__jRt_590[0]);
+            __jRt_592.setReturn(__jRt_0);
+
+        } catch (java.sql.SQLException except) {
+            except.printStackTrace();
+            throw new java.sql.SQLException(except.getClass().getName() +
+                                            ": " + except.getMessage());
+        }
+        return __jRt_592;
+    }
+
+    public uclm.esi.cardroid.data.oracle.DateTimePrefsplaceTyp_Out1 placeTyp(LatLng coords,
+                                                                             String name,
+                                                                             String description,
+                                                                             java.sql.Blob snapshot) throws java.sql.SQLException {
+
+        Place __jRt_0 = null;
+        uclm.esi.cardroid.data.oracle.DateTimePrefsplaceTyp_Out1 __jRt_603 =
+            new uclm.esi.cardroid.data.oracle.DateTimePrefsplaceTyp_Out1();
+        try {
+            java.sql.Blob __jRt_599 = snapshot;
+            String __jRt_597 = description;
+            String __jRt_595 = name;
+            LatLng __jRt_593 = coords;
+            Place[] __jRt_601 = new Place[1];
+            __jRt_0 =
+                    super.placeTyp(__jRt_593, __jRt_595, __jRt_597, __jRt_599,
+                                   __jRt_601);
+            __jRt_603.setJptOut(__jRt_601[0]);
+            __jRt_603.setReturn(__jRt_0);
+
+        } catch (java.sql.SQLException except) {
+            except.printStackTrace();
+            throw new java.sql.SQLException(except.getClass().getName() +
+                                            ": " + except.getMessage());
+        }
+        return __jRt_603;
+    }
+
+    public uclm.esi.cardroid.data.oracle.DateTimePrefsplaceTyp_Out2 placeTyp(LatLng coords,
+                                                                             String name,
+                                                                             java.sql.Blob snapshot) throws java.sql.SQLException {
+
+        Place __jRt_0 = null;
+        uclm.esi.cardroid.data.oracle.DateTimePrefsplaceTyp_Out2 __jRt_612 =
+            new uclm.esi.cardroid.data.oracle.DateTimePrefsplaceTyp_Out2();
+        try {
+            java.sql.Blob __jRt_608 = snapshot;
+            String __jRt_606 = name;
+            LatLng __jRt_604 = coords;
+            Place[] __jRt_610 = new Place[1];
+            __jRt_0 =
+                    super.placeTyp(__jRt_604, __jRt_606, __jRt_608, __jRt_610);
+            __jRt_612.setJptOut(__jRt_610[0]);
+            __jRt_612.setReturn(__jRt_0);
+
+        } catch (java.sql.SQLException except) {
+            except.printStackTrace();
+            throw new java.sql.SQLException(except.getClass().getName() +
+                                            ": " + except.getMessage());
+        }
+        return __jRt_612;
+    }
+
+    public uclm.esi.cardroid.data.oracle.DateTimePrefsplaceTyp_Out3 placeTyp(LatLng coords,
+                                                                             String name,
+                                                                             String description) throws java.sql.SQLException {
+
+        Place __jRt_0 = null;
+        uclm.esi.cardroid.data.oracle.DateTimePrefsplaceTyp_Out3 __jRt_621 =
+            new uclm.esi.cardroid.data.oracle.DateTimePrefsplaceTyp_Out3();
+        try {
+            String __jRt_617 = description;
+            String __jRt_615 = name;
+            LatLng __jRt_613 = coords;
+            Place[] __jRt_619 = new Place[1];
+            __jRt_0 =
+                    super.placeTyp(__jRt_613, __jRt_615, __jRt_617, __jRt_619);
+            __jRt_621.setJptOut(__jRt_619[0]);
+            __jRt_621.setReturn(__jRt_0);
+
+        } catch (java.sql.SQLException except) {
+            except.printStackTrace();
+            throw new java.sql.SQLException(except.getClass().getName() +
+                                            ": " + except.getMessage());
+        }
+        return __jRt_621;
+    }
+
+    public PlaceRef getRef() throws SQLException {
+        PlaceRef ref = new PlaceRef();
+        ref.setValue(this);
+        return ref;
+    }
+
+    public void setRef(PlaceRef ref) throws SQLException {
+        ref.setValue(this);
+    }
+}/*@lineinfo:generated-code*/

@@ -1,0 +1,22 @@
+package uclm.esi.cardroid.data;
+
+public interface IPlace {
+
+    public IPlace newInstance(IPlace placeObject);
+
+    public void setName(String name);
+
+    public String getName();
+
+    public void setCoordinates(ILatLng coords);
+
+    public ILatLng getCoordinates();
+
+    public void setDescription(String description);
+
+    public String getDescription();
+
+    public void setSnapshot(java.sql.Blob bitmapObject);
+
+    public java.sql.Blob getSnapshot();
+}

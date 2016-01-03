@@ -1,0 +1,54 @@
+package uclm.esi.cardroid.data;
+
+public interface IUser {
+
+    public IUser newInstance(IUser userObject);
+
+    public void setName(String name);
+
+    public String getName();
+
+    public void setSurname(String surname);
+
+    public String getSurname();
+
+    public void setAvatar(java.sql.Blob avatar);
+
+    public java.sql.Blob getAvatar();
+
+    public void setHome(IPlace home);
+
+    public IPlace getHome();
+
+    public void setTelephoneNumber(int telephone);
+
+    public int getTelephoneNumber();
+
+    public void setEmail(String email);
+
+    public String getEmail();
+
+    public void setReputation(int reputation);
+
+    public int getReputation();
+
+    public void increaseReputation();
+
+    public void increaseReputation(int increase);
+
+    public void decreaseReputation();
+
+    public void decreaseReputation(int decrease);
+
+    public void setCars(ICar[] cars);
+
+    public ICar[] getCars();
+
+    public boolean addCar(ICar car);
+
+    public boolean removeCar(ICar car);
+
+    public void clearCars();
+
+    public int getNCars();
+}

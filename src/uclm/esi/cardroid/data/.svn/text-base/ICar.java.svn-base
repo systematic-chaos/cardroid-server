@@ -1,0 +1,48 @@
+package uclm.esi.cardroid.data;
+
+public interface ICar {
+
+    public ICar newInstance(ICar carObject);
+
+    public void setBrand(String brand);
+
+    public String getBrand();
+
+    public void setModel(String model);
+
+    public String getModel();
+
+    public void setFuel(Fuel fuel);
+
+    public Fuel getFuel();
+
+    public void setConsumptionPerKm(double consumptionPerKm);
+
+    public double getConsumptionPerKm();
+
+    public void setNSeats(int nSeats);
+
+    public int getNSeats();
+
+    public void setColor(String color);
+
+    public String getColor();
+
+    public void setPlate(String plate);
+
+    public String getPlate();
+
+    /**
+     * \class Fuel
+     * enum type depicting the different types of fuel a car can
+     * consume
+     */
+    public static enum Fuel {
+
+        UNLEADED_95,
+        UNLEADED_98,
+        DIESEL_A,
+        DIESEL_A_PLUS,
+        BIODIESEL;
+    }
+}

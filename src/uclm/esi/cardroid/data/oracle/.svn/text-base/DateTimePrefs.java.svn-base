@@ -1,0 +1,170 @@
+/*@lineinfo:filename=DateTimePrefs*/ /*@lineinfo:user-code*/ /*@lineinfo:1^1*/package uclm.esi.cardroid.data.oracle;
+
+import java.sql.SQLException;
+import java.sql.Connection;
+import java.sql.Timestamp;
+
+import oracle.sql.ORAData;
+import oracle.sql.ORADataFactory;
+import oracle.sql.Datum;
+
+import sqlj.runtime.ref.DefaultContext;
+
+import uclm.esi.cardroid.data.IDateTimePrefs;
+
+public class DateTimePrefs extends DateTimePrefsTyp implements ORAData,
+                                                               ORADataFactory,
+                                                               IDateTimePrefs {
+    private static final DateTimePrefs _DateTimePrefsFactory =
+        new DateTimePrefs();
+
+    public static ORADataFactory getORADataFactory() {
+        return _DateTimePrefsFactory;
+    }
+
+    public DateTimePrefs() {
+        super();
+    }
+
+    public DateTimePrefs(Connection conn) throws SQLException {
+        super(conn);
+    }
+
+    public DateTimePrefs(DefaultContext ctx) throws SQLException {
+        super(ctx);
+    }
+
+    public DateTimePrefs(java.sql.Timestamp datetime, int toleranceDays,
+                         String timePreferences) {
+        setDatetime(datetime);
+        setToleranceDays(toleranceDays);
+        setTimePreferences(TimePreferences.valueOf(timePreferences));
+    }
+    /* ORAData interface */
+
+    protected ORAData createExact(Datum d, int sqlType) throws SQLException {
+        return create(new DateTimePrefs(), d, sqlType);
+    }
+
+    /* IDateTimePrefs interface */
+
+    public DateTimePrefs newInstance(IDateTimePrefs dateTimePrefsObject) {
+        if (dateTimePrefsObject == null)
+            return null;
+        if (dateTimePrefsObject instanceof DateTimePrefs)
+            return (DateTimePrefs)dateTimePrefsObject;
+        DateTimePrefs dateTimePrefs = null;
+        return new DateTimePrefs(new Timestamp(dateTimePrefsObject.getTimeInMillis()),
+                                 dateTimePrefsObject.getToleranceDays(),
+                                 dateTimePrefsObject.getTimePreferences().name());
+    }
+
+    @Override
+    public void setToleranceDays(int toleranceDays) {
+        try {
+            super.setToleranceDays(toleranceDays);
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+    }
+
+    @Override
+    public int getToleranceDays() {
+        int toleranceDays = 0;
+        try {
+            toleranceDays = super.getToleranceDays();
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+        return toleranceDays;
+    }
+
+    public void setTimePreferences(TimePreferences timePreferences) {
+        try {
+            super.setTimePreferences(timePreferences.name());
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+    }
+
+    public TimePreferences getTimePreferences() {
+        TimePreferences timePreferences = null;
+        try {
+            timePreferences =
+                    IDateTimePrefs.TimePreferences.valueOf(super.getTimePreferencesName());
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+        return timePreferences;
+    }
+
+    /* superclass methods */
+
+    public java.sql.Timestamp compareTo() throws java.sql.SQLException {
+
+        java.sql.Timestamp __jRt_0 = null;
+        try {
+            __jRt_0 = super.compareTo();
+
+        } catch (java.sql.SQLException except) {
+            except.printStackTrace();
+            throw new java.sql.SQLException(except.getClass().getName() +
+                                            ": " + except.getMessage());
+        }
+        return __jRt_0;
+    }
+
+    public uclm.esi.cardroid.data.oracle.DateTimePrefsdateTimePrefsTyp_Out dateTimePrefsTyp(java.sql.Timestamp datetime,
+                                                                                            String timePreferences) throws java.sql.SQLException {
+
+        DateTimePrefs __jRt_0 = null;
+        uclm.esi.cardroid.data.oracle.DateTimePrefsdateTimePrefsTyp_Out __jRt_578 =
+            new uclm.esi.cardroid.data.oracle.DateTimePrefsdateTimePrefsTyp_Out();
+        try {
+            String __jRt_574 = timePreferences;
+            java.sql.Timestamp __jRt_572 = datetime;
+            DateTimePrefs[] __jRt_576 = new DateTimePrefs[1];
+            __jRt_0 = super.dateTimePrefsTyp(__jRt_572, __jRt_574, __jRt_576);
+            __jRt_578.setJptOut(__jRt_576[0]);
+            __jRt_578.setReturn(__jRt_0);
+
+        } catch (java.sql.SQLException except) {
+            except.printStackTrace();
+            throw new java.sql.SQLException(except.getClass().getName() +
+                                            ": " + except.getMessage());
+        }
+        return __jRt_578;
+    }
+
+    public uclm.esi.cardroid.data.oracle.DateTimePrefsdateTimePrefsTyp_Out0 dateTimePrefsTyp(java.sql.Timestamp datetime,
+                                                                                             int toleranceDays) throws java.sql.SQLException {
+
+        DateTimePrefs __jRt_0 = null;
+        uclm.esi.cardroid.data.oracle.DateTimePrefsdateTimePrefsTyp_Out0 __jRt_585 =
+            new uclm.esi.cardroid.data.oracle.DateTimePrefsdateTimePrefsTyp_Out0();
+        try {
+            int __jRt_581 = toleranceDays;
+            java.sql.Timestamp __jRt_579 = datetime;
+            DateTimePrefs[] __jRt_583 = new DateTimePrefs[1];
+            __jRt_0 = super.dateTimePrefsTyp(__jRt_579, __jRt_581, __jRt_583);
+            __jRt_585.setJptOut(__jRt_583[0]);
+            __jRt_585.setReturn(__jRt_0);
+
+        } catch (java.sql.SQLException except) {
+            except.printStackTrace();
+            throw new java.sql.SQLException(except.getClass().getName() +
+                                            ": " + except.getMessage());
+        }
+        return __jRt_585;
+    }
+
+    public DateTimePrefsRef getDateTimePrefsRef() throws SQLException {
+        DateTimePrefsRef ref = new DateTimePrefsRef();
+        ref.setValue(this);
+        return ref;
+    }
+
+    public void setDateTimePrefsRef(DateTimePrefsRef ref) throws SQLException {
+        ref.setValue(this);
+    }
+}/*@lineinfo:generated-code*/

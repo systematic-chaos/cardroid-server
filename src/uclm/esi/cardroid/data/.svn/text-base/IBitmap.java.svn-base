@@ -1,0 +1,37 @@
+package uclm.esi.cardroid.data;
+
+public interface IBitmap {
+
+    public IBitmap newInstance(IBitmap bitmapObject);
+
+    public void setBitmap(java.sql.Blob bitmap);
+
+    public java.sql.Blob getBitmap();
+
+    public void setCompressFormat(CompressFormat compressFormat);
+
+    public CompressFormat getCompressFormat();
+
+    public void setConfig(Config config);
+
+    public Config getConfig();
+
+    public void setDensity(int density);
+
+    public int getDensity();
+
+    public static enum CompressFormat {
+
+        JPEG,
+        PNG,
+        WEBP;
+    }
+
+    public static enum Config {
+
+        ALPHA_8,
+        ARGB_4444,
+        ARGB_8888,
+        RGB_565;
+    }
+}

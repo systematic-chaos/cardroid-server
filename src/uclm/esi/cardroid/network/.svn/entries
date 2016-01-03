@@ -1,0 +1,35 @@
+10
+
+dir
+0
+http://subversion.assembla.com/svn/esicr/trunk/Oracle/src/uclm/esi/cardroid/network
+http://subversion.assembla.com/svn/esicr
+add
+
+
+
+
+
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+2ad370b4-bdb4-472d-bba3-dcf9a23a9e15
+
+server
+dir
+
+
+
+add
+

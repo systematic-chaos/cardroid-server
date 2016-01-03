@@ -1,0 +1,124 @@
+package uclm.esi.cardroid.data.oracle;
+
+import java.sql.SQLException;
+import java.sql.Connection;
+
+import oracle.jdbc.OracleTypes;
+
+import oracle.sql.ORAData;
+import oracle.sql.ORADataFactory;
+import oracle.sql.Datum;
+import oracle.sql.STRUCT;
+
+import oracle.jpub.runtime.MutableStruct;
+
+public class UserActivityTyp implements ORAData, ORADataFactory {
+    public static final String _SQL_NAME = "ANDROID.USER_ACTIVITY_TYP";
+    public static final int _SQL_TYPECODE = OracleTypes.STRUCT;
+
+    protected MutableStruct _struct;
+
+    protected static int[] _sqlType = { 2002, 2002, 12, 93 };
+    protected static ORADataFactory[] _factory = new ORADataFactory[4];
+    static {
+        _factory[0] = User.getORADataFactory();
+        _factory[1] = Trip.getORADataFactory();
+    }
+    protected static final UserActivityTyp _UserActivityTypFactory =
+        new UserActivityTyp();
+
+    public static ORADataFactory getORADataFactory() {
+        return _UserActivityTypFactory;
+    }
+    /* constructors */
+
+    protected void _init_struct(boolean init) {
+        if (init)
+            _struct = new MutableStruct(new Object[4], _sqlType, _factory);
+    }
+
+    public UserActivityTyp() {
+        _init_struct(true);
+    }
+
+    public UserActivityTyp(User activityUser, Trip activityTrip,
+                           String activityType,
+                           java.sql.Timestamp timeStamp) throws SQLException {
+        _init_struct(true);
+        setActivityUser(activityUser);
+        setActivityTrip(activityTrip);
+        setActivityType(activityType);
+        setTimeStamp(timeStamp);
+    }
+
+    /* ORAData interface */
+
+    public Datum toDatum(Connection c) throws SQLException {
+        return _struct.toDatum(c, _SQL_NAME);
+    }
+
+
+    /* ORADataFactory interface */
+
+    public ORAData create(Datum d, int sqlType) throws SQLException {
+        return create(null, d, sqlType);
+    }
+
+    protected ORAData create(UserActivityTyp o, Datum d,
+                             int sqlType) throws SQLException {
+        if (d == null)
+            return null;
+        if (o == null)
+            o = new UserActivity();
+        o._struct = new MutableStruct((STRUCT)d, _sqlType, _factory);
+        return o;
+    }
+    /* accessor methods */
+
+    public User getActivityUser() throws SQLException {
+        return (User)_struct.getAttribute(0);
+    }
+
+    public void setActivityUser(User activityUser) throws SQLException {
+        _struct.setAttribute(0, activityUser);
+    }
+
+
+    public Trip getActivityTrip() throws SQLException {
+        return (Trip)_struct.getAttribute(1);
+    }
+
+    public void setActivityTrip(Trip activityTrip) throws SQLException {
+        _struct.setAttribute(1, activityTrip);
+    }
+
+
+    public String getActivityTypeName() throws SQLException {
+        return (String)_struct.getAttribute(2);
+    }
+
+    public void setActivityType(String activityType) throws SQLException {
+        _struct.setAttribute(2, activityType);
+    }
+
+
+    public java.sql.Timestamp getTimeStamp() throws SQLException {
+        return (java.sql.Timestamp)_struct.getAttribute(3);
+    }
+
+    public void setTimeStamp(java.sql.Timestamp timeStamp) throws SQLException {
+        _struct.setAttribute(3, timeStamp);
+    }
+
+    public String toString() {
+        try {
+            return "ANDROID.USER_ACTIVITY_TYP" + "(" + getActivityUser() +
+                "," + getActivityTrip() + "," +
+                ((getActivityTypeName() == null) ? "null" :
+                 "'" + getActivityTypeName() + "'") + "," + getTimeStamp() + ")";
+        } catch (Exception e) {
+            return e.toString();
+        }
+    }
+
+}

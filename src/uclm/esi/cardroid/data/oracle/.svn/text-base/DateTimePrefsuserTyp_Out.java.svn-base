@@ -1,0 +1,35 @@
+package uclm.esi.cardroid.data.oracle;
+
+import java.sql.SQLException;
+import sqlj.runtime.ref.DefaultContext;
+import sqlj.runtime.ConnectionContext;
+import sqlj.runtime.ref.DefaultContext;
+import sqlj.runtime.ConnectionContext;
+import java.sql.Connection;
+
+public class DateTimePrefsuserTyp_Out
+{
+
+  /* connection management */
+
+  /* constructors */
+  public DateTimePrefsuserTyp_Out()
+  { } 
+  public DateTimePrefsuserTyp_Out(java.sql.Connection c)  { } 
+
+  public User getJptOut() throws java.sql.SQLException
+  { return __jPt_out; }
+
+  public void setJptOut(User __jPt_out) throws java.sql.SQLException
+  { this.__jPt_out = __jPt_out; }
+
+
+  public User getReturn() throws java.sql.SQLException
+  { return __return; }
+
+  public void setReturn(User __return) throws java.sql.SQLException
+  { this.__return = __return; }
+
+  private User __jPt_out;
+  private User __return;
+}

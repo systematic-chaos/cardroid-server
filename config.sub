@@ -1,0 +1,28 @@
+#
+# This property is used to configure the endpoints of the subscriber adapter.
+# These endpoints are where the client receives topic messages from IceStorm
+#
+Cardroid.Subscriber.Endpoints = ssl
+
+#
+# This property is used by the clients to connect to IceStorm
+#
+TopicManager.Proxy = CardroidIceStorm/TopicManager : ssl -h 192.168.0.101 -p 6536
+
+#
+# Network Tracing
+#
+# 0 = no network tracing
+# 1 = trace connection establishment and closure
+# 2 = like 1, but more detailed
+# 3 = like 2, but also trace data transfer
+#
+#Ice.Trace.Network = 1
+
+#
+# IceMX configuration
+#
+#Ice.Admin.Endpoints = tcp -h localhost -p 5559
+Ice.Admin.InstanceName = subscriber
+IceMX.Metrics.Debug.GroupBy = id
+IceMX.Metrics.ByParent.GroupBy = parent

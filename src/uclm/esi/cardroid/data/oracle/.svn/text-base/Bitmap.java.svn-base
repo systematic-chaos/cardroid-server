@@ -1,0 +1,134 @@
+package uclm.esi.cardroid.data.oracle;
+
+import java.sql.SQLException;
+
+import oracle.sql.ORAData;
+import oracle.sql.ORADataFactory;
+import oracle.sql.Datum;
+
+import uclm.esi.cardroid.data.IBitmap;
+
+public class Bitmap extends BitmapTyp implements ORAData, ORADataFactory,
+                                                 IBitmap {
+    private static final Bitmap _BitmapFactory = new Bitmap();
+
+    public static ORADataFactory getORADataFactory() {
+        return _BitmapFactory;
+    }
+
+    public Bitmap() {
+        super();
+    }
+
+    public Bitmap(java.sql.Blob bitmap, String compressFormatName,
+                  String configName, int density) {
+        setBitmap(bitmap);
+        setCompressFormat(IBitmap.CompressFormat.valueOf(compressFormatName));
+        setConfig(IBitmap.Config.valueOf(configName));
+        setDensity(density);
+    }
+
+    /* ORAData interface */
+
+    public ORAData create(Datum d, int sqlType) throws SQLException {
+        return create(new Bitmap(), d, sqlType);
+    }
+
+    /* IBitmap interface */
+
+    public Bitmap newInstance(IBitmap bitmapObject) {
+        return new Bitmap(bitmapObject.getBitmap(),
+                          bitmapObject.getCompressFormat().name(),
+                          bitmapObject.getConfig().name(),
+                          bitmapObject.getDensity());
+    }
+
+    @Override
+    public void setBitmap(java.sql.Blob bitmap) {
+        try {
+            super.setBitmap(bitmap);
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+    }
+
+    @Override
+    public java.sql.Blob getBitmap() {
+        java.sql.Blob bitmap = null;
+        try {
+            bitmap = super.getBitmap();
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+        return bitmap;
+    }
+
+    public void setCompressFormat(CompressFormat compressFormat) {
+        try {
+            super.setCompressFormat(compressFormat.name());
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+    }
+
+    public CompressFormat getCompressFormat() {
+        CompressFormat compressFormat = null;
+        try {
+            compressFormat =
+                    IBitmap.CompressFormat.valueOf(super.getCompressFormatName());
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+        return compressFormat;
+    }
+
+    public void setConfig(Config config) {
+        try {
+            super.setConfig(config.name());
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+    }
+
+    public Config getConfig() {
+        Config config = null;
+        try {
+            config = IBitmap.Config.valueOf(super.getConfigName());
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+        return config;
+    }
+
+    @Override
+    public void setDensity(int density) {
+        try {
+            super.setDensity(density);
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+    }
+
+    @Override
+    public int getDensity() {
+        int density = 0;
+        try {
+            density = super.getDensity();
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+        return density;
+    }
+
+    public BitmapRef getRef() throws SQLException {
+        BitmapRef ref = new BitmapRef();
+        ref.setValue(this);
+        return ref;
+    }
+
+    public void setRef(BitmapRef ref) throws SQLException {
+        ref.setValue(this);
+    }
+
+
+}

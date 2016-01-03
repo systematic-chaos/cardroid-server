@@ -1,0 +1,53 @@
+package uclm.esi.cardroid.data;
+
+public interface ITrip {
+
+    public ITrip newInstance(ITrip tripObject);
+
+    public void setFromPlace(IPlace from);
+
+    public IPlace getFromPlace();
+
+    public void setToPlace(IPlace to);
+
+    public IPlace getToPlace();
+
+    public void setDateTime(IDate datetime);
+
+    public IDate getDateTime();
+
+    public void setNSeats(int nSeats);
+
+    public int getNSeats();
+
+    public void setReturnDateTime(IDate returnDatetime);
+
+    public IDate getReturnDateTime();
+
+    public void setWeekDaysPeriodicity(char[] weekDays,
+                                       Periodicity periodicity);
+
+    public char[] getWeekDays();
+
+    public Periodicity getPeriodicity();
+
+    public void setDistance(int distance);
+
+    public int getDistance();
+
+    public void setCharacteristics(String characteristics);
+
+    public String getCharacteristics();
+
+    /**
+     * \class Periodicity
+     * enum type depicting the possible week values for
+     * scheduling a periodic trip
+     */
+    public static enum Periodicity {
+
+        EVERY_WEEK,
+        EVEN_WEEKS,
+        ODD_WEEKS;
+    }
+}

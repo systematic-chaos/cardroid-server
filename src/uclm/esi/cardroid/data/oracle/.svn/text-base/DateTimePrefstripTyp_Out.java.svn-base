@@ -1,0 +1,34 @@
+package uclm.esi.cardroid.data.oracle;
+
+public class DateTimePrefstripTyp_Out {
+
+    /* connection management */
+
+    /* constructors */
+
+    public DateTimePrefstripTyp_Out() {
+    }
+
+    public DateTimePrefstripTyp_Out(java.sql.Connection c) {
+    }
+
+    public Trip getJptOut() throws java.sql.SQLException {
+        return __jPt_out;
+    }
+
+    public void setJptOut(Trip __jPt_out) throws java.sql.SQLException {
+        this.__jPt_out = __jPt_out;
+    }
+
+
+    public Trip getReturn() throws java.sql.SQLException {
+        return __return;
+    }
+
+    public void setReturn(Trip __return) throws java.sql.SQLException {
+        this.__return = __return;
+    }
+
+    private Trip __jPt_out;
+    private Trip __return;
+}

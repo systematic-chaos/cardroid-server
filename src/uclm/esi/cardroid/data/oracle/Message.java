@@ -1,0 +1,141 @@
+package uclm.esi.cardroid.data.oracle;
+
+import java.sql.SQLException;
+
+import java.sql.Timestamp;
+
+import oracle.sql.ORAData;
+import oracle.sql.ORADataFactory;
+import oracle.sql.Datum;
+
+import uclm.esi.cardroid.data.IMessage;
+import uclm.esi.cardroid.data.IUser;
+
+/**
+ * \class Message
+ * Domain class implementing a Message for its storage and retrieval from an 
+ * Oracle database
+ */
+public class Message extends MessageTyp implements ORAData, ORADataFactory,
+                                                   IMessage {
+    private static final Message _MessageFactory = new Message();
+
+    public static ORADataFactory getORADataFactory() {
+        return _MessageFactory;
+    }
+
+    public Message() {
+        super();
+    }
+
+    /**
+	 * Default constructor
+	 */
+    public Message(User user1, User user2, String message,
+                   java.sql.Timestamp timeStamp) {
+        setFromUser(user1);
+        setToUser(user2);
+        setMessageText(message);
+        setTimeStamp(timeStamp);
+    }
+    /* ORAData interface */
+
+    public ORAData create(Datum d, int sqlType) throws SQLException {
+        return create(new Message(), d, sqlType);
+    }
+
+    /* IMessage interface */
+
+    public Message newInstance(IMessage messageObject) {
+        if (messageObject == null)
+            return null;
+        if (messageObject instanceof Message)
+            return (Message)messageObject;
+        User user1 = new User().newInstance(messageObject.getFromUser());
+        User user2 = new User().newInstance(messageObject.getToUser());
+        return new Message(user1, user2, messageObject.getMessageText(),
+                           messageObject.getTimeStamp());
+    }
+
+    public void setFromUser(IUser fromUser) {
+        try {
+            super.setUser1(new User().newInstance(fromUser));
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+    }
+
+    public User getFromUser() {
+        User fromUser = null;
+        try {
+            fromUser = super.getUser1();
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+        return fromUser;
+    }
+
+    public void setToUser(IUser toUser) {
+        try {
+            super.setUser2(new User().newInstance(toUser));
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+    }
+
+    public User getToUser() {
+        User toUser = null;
+        try {
+            toUser = super.getUser2();
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+        return toUser;
+    }
+
+    public void setMessageText(String message) {
+        try {
+            super.setMessageText(message);
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+    }
+
+    public String getMessageText() {
+        String messageText = null;
+        try {
+            messageText = super.getMessageText();
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+        return messageText;
+    }
+
+    public void setTimeStamp(Timestamp timeStamp) {
+        try {
+            super.setTimeStamp(timeStamp);
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+    }
+
+    public Timestamp getTimeStamp() {
+        Timestamp timestamp = null;
+        try {
+            timestamp = super.getTimeStamp();
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+        return timestamp;
+    }
+
+    public MessageRef getRef() throws SQLException {
+        MessageRef ref = new MessageRef();
+        ref.setValue(this);
+        return ref;
+    }
+
+    public void setRef(MessageRef ref) throws SQLException {
+        ref.setValue(this);
+    }
+}

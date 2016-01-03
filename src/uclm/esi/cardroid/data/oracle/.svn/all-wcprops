@@ -1,0 +1,401 @@
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/esicr/!svn/ver/29/trunk/Oracle/src/uclm/esi/cardroid/data/oracle
+END
+DateTimeTyp.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/esicr/!svn/ver/29/trunk/Oracle/src/uclm/esi/cardroid/data/oracle/DateTimeTyp.java
+END
+TripRef.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/esicr/!svn/ver/29/trunk/Oracle/src/uclm/esi/cardroid/data/oracle/TripRef.java
+END
+DateTimePrefsplaceTyp_Out2.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/esicr/!svn/ver/29/trunk/Oracle/src/uclm/esi/cardroid/data/oracle/DateTimePrefsplaceTyp_Out2.java
+END
+TripRequest.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/esicr/!svn/ver/29/trunk/Oracle/src/uclm/esi/cardroid/data/oracle/TripRequest.java
+END
+Trip_WeekDaysVarray.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/esicr/!svn/ver/29/trunk/Oracle/src/uclm/esi/cardroid/data/oracle/Trip_WeekDaysVarray.java
+END
+TripTyp.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/esicr/!svn/ver/29/trunk/Oracle/src/uclm/esi/cardroid/data/oracle/TripTyp.java
+END
+DateRef.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/esicr/!svn/ver/29/trunk/Oracle/src/uclm/esi/cardroid/data/oracle/DateRef.java
+END
+DateTimePrefstripRequestTyp_Out.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/esicr/!svn/ver/29/trunk/Oracle/src/uclm/esi/cardroid/data/oracle/DateTimePrefstripRequestTyp_Out.java
+END
+BitmapRef.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/esicr/!svn/ver/29/trunk/Oracle/src/uclm/esi/cardroid/data/oracle/BitmapRef.java
+END
+TripOffer_AllowedVarray.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/esicr/!svn/ver/29/trunk/Oracle/src/uclm/esi/cardroid/data/oracle/TripOffer_AllowedVarray.java
+END
+DateTimePrefstripTyp_Out12.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/esicr/!svn/ver/29/trunk/Oracle/src/uclm/esi/cardroid/data/oracle/DateTimePrefstripTyp_Out12.java
+END
+DateTimePrefstripTyp_Out.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/esicr/!svn/ver/29/trunk/Oracle/src/uclm/esi/cardroid/data/oracle/DateTimePrefstripTyp_Out.java
+END
+DateTyp.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/esicr/!svn/ver/29/trunk/Oracle/src/uclm/esi/cardroid/data/oracle/DateTyp.java
+END
+BitmapTyp.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/esicr/!svn/ver/29/trunk/Oracle/src/uclm/esi/cardroid/data/oracle/BitmapTyp.java
+END
+DateTimePrefstripOfferTyp_Out4.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/esicr/!svn/ver/29/trunk/Oracle/src/uclm/esi/cardroid/data/oracle/DateTimePrefstripOfferTyp_Out4.java
+END
+TripOffer.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/esicr/!svn/ver/29/trunk/Oracle/src/uclm/esi/cardroid/data/oracle/TripOffer.java
+END
+Car.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/esicr/!svn/ver/29/trunk/Oracle/src/uclm/esi/cardroid/data/oracle/Car.java
+END
+DateTimePrefstripRequestTyp_Out7.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/esicr/!svn/ver/29/trunk/Oracle/src/uclm/esi/cardroid/data/oracle/DateTimePrefstripRequestTyp_Out7.java
+END
+MessageRef.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/esicr/!svn/ver/29/trunk/Oracle/src/uclm/esi/cardroid/data/oracle/MessageRef.java
+END
+PlaceRef.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/esicr/!svn/ver/29/trunk/Oracle/src/uclm/esi/cardroid/data/oracle/PlaceRef.java
+END
+DateTimePrefsplaceTyp_Out3.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/esicr/!svn/ver/29/trunk/Oracle/src/uclm/esi/cardroid/data/oracle/DateTimePrefsplaceTyp_Out3.java
+END
+UserRef.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/esicr/!svn/ver/29/trunk/Oracle/src/uclm/esi/cardroid/data/oracle/UserRef.java
+END
+DateTimePrefsplaceTyp_Out.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/esicr/!svn/ver/29/trunk/Oracle/src/uclm/esi/cardroid/data/oracle/DateTimePrefsplaceTyp_Out.java
+END
+Trip.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/esicr/!svn/ver/29/trunk/Oracle/src/uclm/esi/cardroid/data/oracle/Trip.java
+END
+PlaceTyp.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/esicr/!svn/ver/29/trunk/Oracle/src/uclm/esi/cardroid/data/oracle/PlaceTyp.java
+END
+MessageTyp.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/esicr/!svn/ver/29/trunk/Oracle/src/uclm/esi/cardroid/data/oracle/MessageTyp.java
+END
+UserTyp.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/esicr/!svn/ver/29/trunk/Oracle/src/uclm/esi/cardroid/data/oracle/UserTyp.java
+END
+DateTimePrefstripOfferTyp_Out5.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/esicr/!svn/ver/29/trunk/Oracle/src/uclm/esi/cardroid/data/oracle/DateTimePrefstripOfferTyp_Out5.java
+END
+DateTimePrefsuserTyp_Out.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/esicr/!svn/ver/29/trunk/Oracle/src/uclm/esi/cardroid/data/oracle/DateTimePrefsuserTyp_Out.java
+END
+DateTimePrefsdateTimePrefsTyp_Out0.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/esicr/!svn/ver/29/trunk/Oracle/src/uclm/esi/cardroid/data/oracle/DateTimePrefsdateTimePrefsTyp_Out0.java
+END
+DateTimePrefs.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/esicr/!svn/ver/29/trunk/Oracle/src/uclm/esi/cardroid/data/oracle/DateTimePrefs.java
+END
+DateTimePrefstripRequestTyp_Out8.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/esicr/!svn/ver/29/trunk/Oracle/src/uclm/esi/cardroid/data/oracle/DateTimePrefstripRequestTyp_Out8.java
+END
+TripOffer_PassengerCollection.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/esicr/!svn/ver/29/trunk/Oracle/src/uclm/esi/cardroid/data/oracle/TripOffer_PassengerCollection.java
+END
+Date.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/esicr/!svn/ver/29/trunk/Oracle/src/uclm/esi/cardroid/data/oracle/Date.java
+END
+User.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/esicr/!svn/ver/29/trunk/Oracle/src/uclm/esi/cardroid/data/oracle/User.java
+END
+TripRequestRef.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/esicr/!svn/ver/29/trunk/Oracle/src/uclm/esi/cardroid/data/oracle/TripRequestRef.java
+END
+Message.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/esicr/!svn/ver/29/trunk/Oracle/src/uclm/esi/cardroid/data/oracle/Message.java
+END
+Place.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/esicr/!svn/ver/29/trunk/Oracle/src/uclm/esi/cardroid/data/oracle/Place.java
+END
+Waypoint.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/esicr/!svn/ver/29/trunk/Oracle/src/uclm/esi/cardroid/data/oracle/Waypoint.java
+END
+TripRequestTyp.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/esicr/!svn/ver/29/trunk/Oracle/src/uclm/esi/cardroid/data/oracle/TripRequestTyp.java
+END
+DateTimePrefstripTyp_Out10.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/esicr/!svn/ver/29/trunk/Oracle/src/uclm/esi/cardroid/data/oracle/DateTimePrefstripTyp_Out10.java
+END
+DateTimePrefstripOfferTyp_Out6.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/esicr/!svn/ver/29/trunk/Oracle/src/uclm/esi/cardroid/data/oracle/DateTimePrefstripOfferTyp_Out6.java
+END
+TripOfferRef.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/esicr/!svn/ver/29/trunk/Oracle/src/uclm/esi/cardroid/data/oracle/TripOfferRef.java
+END
+UserActivityRef.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/esicr/!svn/ver/29/trunk/Oracle/src/uclm/esi/cardroid/data/oracle/UserActivityRef.java
+END
+DateTimePrefstripOfferTyp_Out.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/esicr/!svn/ver/29/trunk/Oracle/src/uclm/esi/cardroid/data/oracle/DateTimePrefstripOfferTyp_Out.java
+END
+DateTimePrefstripRequestTyp_Out9.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/esicr/!svn/ver/29/trunk/Oracle/src/uclm/esi/cardroid/data/oracle/DateTimePrefstripRequestTyp_Out9.java
+END
+TripOfferTyp.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/esicr/!svn/ver/29/trunk/Oracle/src/uclm/esi/cardroid/data/oracle/TripOfferTyp.java
+END
+WaypointRef.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/esicr/!svn/ver/29/trunk/Oracle/src/uclm/esi/cardroid/data/oracle/WaypointRef.java
+END
+UserActivityTyp.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/esicr/!svn/ver/29/trunk/Oracle/src/uclm/esi/cardroid/data/oracle/UserActivityTyp.java
+END
+Bitmap.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/esicr/!svn/ver/29/trunk/Oracle/src/uclm/esi/cardroid/data/oracle/Bitmap.java
+END
+LatLngRef.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/esicr/!svn/ver/29/trunk/Oracle/src/uclm/esi/cardroid/data/oracle/LatLngRef.java
+END
+WaypointTyp.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/esicr/!svn/ver/29/trunk/Oracle/src/uclm/esi/cardroid/data/oracle/WaypointTyp.java
+END
+DateTimePrefsplaceTyp_Out1.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/esicr/!svn/ver/29/trunk/Oracle/src/uclm/esi/cardroid/data/oracle/DateTimePrefsplaceTyp_Out1.java
+END
+TripOffer_WaypointCollection.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/esicr/!svn/ver/29/trunk/Oracle/src/uclm/esi/cardroid/data/oracle/TripOffer_WaypointCollection.java
+END
+LatLng.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/esicr/!svn/ver/29/trunk/Oracle/src/uclm/esi/cardroid/data/oracle/LatLng.java
+END
+LatLngTyp.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/esicr/!svn/ver/29/trunk/Oracle/src/uclm/esi/cardroid/data/oracle/LatLngTyp.java
+END
+DateTimePrefstripTyp_Out11.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/esicr/!svn/ver/29/trunk/Oracle/src/uclm/esi/cardroid/data/oracle/DateTimePrefstripTyp_Out11.java
+END
+CarRef.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/esicr/!svn/ver/29/trunk/Oracle/src/uclm/esi/cardroid/data/oracle/CarRef.java
+END
+User_CarCollection.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/esicr/!svn/ver/29/trunk/Oracle/src/uclm/esi/cardroid/data/oracle/User_CarCollection.java
+END
+DateTimePrefsRef.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/esicr/!svn/ver/29/trunk/Oracle/src/uclm/esi/cardroid/data/oracle/DateTimePrefsRef.java
+END
+DateTime.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/esicr/!svn/ver/29/trunk/Oracle/src/uclm/esi/cardroid/data/oracle/DateTime.java
+END
+UserActivity.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/esicr/!svn/ver/29/trunk/Oracle/src/uclm/esi/cardroid/data/oracle/UserActivity.java
+END
+DateTimePrefsdateTimePrefsTyp_Out.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/esicr/!svn/ver/29/trunk/Oracle/src/uclm/esi/cardroid/data/oracle/DateTimePrefsdateTimePrefsTyp_Out.java
+END
+DateTimeRef.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/esicr/!svn/ver/29/trunk/Oracle/src/uclm/esi/cardroid/data/oracle/DateTimeRef.java
+END
+CarTyp.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/esicr/!svn/ver/29/trunk/Oracle/src/uclm/esi/cardroid/data/oracle/CarTyp.java
+END
+DateTimePrefsTyp.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/esicr/!svn/ver/29/trunk/Oracle/src/uclm/esi/cardroid/data/oracle/DateTimePrefsTyp.java
+END

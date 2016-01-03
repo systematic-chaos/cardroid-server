@@ -1,0 +1,126 @@
+package uclm.esi.cardroid.data.oracle;
+
+import java.sql.Blob;
+import java.sql.SQLException;
+
+import oracle.sql.ORAData;
+import oracle.sql.ORADataFactory;
+import oracle.sql.Datum;
+
+import uclm.esi.cardroid.data.ILatLng;
+import uclm.esi.cardroid.data.IPlace;
+
+public class Waypoint extends WaypointTyp implements ORAData, ORADataFactory,
+                                                     IPlace {
+    private static final Waypoint _WaypointFactory = new Waypoint();
+
+    public static ORADataFactory getORADataFactory() {
+        return _WaypointFactory;
+    }
+
+    public Waypoint() {
+        super();
+    }
+
+    public Waypoint(int nOrder, Place place) {
+        setNOrder(nOrder);
+        setPlace(place);
+    }
+
+    /* ORAData interface */
+
+    public ORAData create(Datum d, int sqlType) throws SQLException {
+        return create(new Waypoint(), d, sqlType);
+    }
+
+    /* IPlace interface */
+
+    public Waypoint newInstance(IPlace placeObject) {
+        if (placeObject == null)
+            return null;
+        if (placeObject instanceof Waypoint)
+            return (Waypoint)placeObject;
+        LatLng coords = new LatLng().newInstance(placeObject.getCoordinates());
+        return new Waypoint(0,
+                            new Place(placeObject.getName(), coords, placeObject.getDescription(),
+                                      placeObject.getSnapshot()));
+    }
+
+    public void setNOrder(int nOrder) {
+        try {
+            super.setNOrder(nOrder);
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+    }
+
+    public int getNOrder() {
+        int nOrder = 0;
+        try {
+            nOrder = super.getNOrder();
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+        return nOrder;
+    }
+
+    public void setPlace(Place place) {
+        try {
+            super.setPlace(place);
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+    }
+
+    public Place getPlace() {
+        Place place = null;
+        try {
+            place = super.getPlace();
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+        return place;
+    }
+
+    public void setName(String name) {
+        getPlace().setName(name);
+    }
+
+    public String getName() {
+        return getPlace().getName();
+    }
+
+    public void setCoordinates(ILatLng coords) {
+        getPlace().setCoordinates(coords);
+    }
+
+    public ILatLng getCoordinates() {
+        return getPlace().getCoordinates();
+    }
+
+    public void setDescription(String description) {
+        getPlace().setDescription(description);
+    }
+
+    public String getDescription() {
+        return getPlace().getDescription();
+    }
+
+    public void setSnapshot(Blob bitmapObject) {
+        getPlace().setSnapshot(bitmapObject);
+    }
+
+    public Blob getSnapshot() {
+        return getPlace().getSnapshot();
+    }
+
+    public WaypointRef getRef() throws SQLException {
+        WaypointRef ref = new WaypointRef();
+        ref.setValue(this);
+        return ref;
+    }
+
+    public void setRef(WaypointRef ref) throws SQLException {
+        ref.setValue(this);
+    }
+}

@@ -1,0 +1,10 @@
+package uclm.esi.cardroid.data;
+
+public interface IDate {
+
+    public IDate newInstance(IDate dateObject);
+
+    public void setTimeInMillis(long time);
+
+    public long getTimeInMillis();
+}

@@ -1,0 +1,24 @@
+package uclm.esi.cardroid.data;
+
+import java.sql.Timestamp;
+
+public interface IMessage {
+
+    public IMessage newInstance(IMessage messageObject);
+
+    public void setFromUser(IUser user);
+
+    public IUser getFromUser();
+
+    public void setToUser(IUser user);
+
+    public IUser getToUser();
+
+    public String getMessageText();
+
+    public void setMessageText(String text);
+
+    public Timestamp getTimeStamp();
+
+    public void setTimeStamp(Timestamp timeStamp);
+}

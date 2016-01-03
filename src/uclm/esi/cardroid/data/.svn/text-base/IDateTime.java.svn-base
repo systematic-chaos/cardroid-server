@@ -1,0 +1,6 @@
+package uclm.esi.cardroid.data;
+
+public interface IDateTime extends IDate {
+
+    public IDateTime newInstance(IDateTime dateObject);
+}

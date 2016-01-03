@@ -1,0 +1,116 @@
+package uclm.esi.cardroid.data.oracle;
+
+import java.sql.SQLException;
+
+import oracle.sql.ORAData;
+import oracle.sql.ORADataFactory;
+import oracle.sql.Datum;
+
+import uclm.esi.cardroid.data.ITrip;
+import uclm.esi.cardroid.data.IUser;
+import uclm.esi.cardroid.data.IUserActivity;
+
+public class UserActivity extends UserActivityTyp implements ORAData,
+                                                             ORADataFactory,
+                                                             IUserActivity {
+    private static final UserActivity _UserActivityFactory =
+        new UserActivity();
+
+    public static ORADataFactory getORADataFactory() {
+        return _UserActivityFactory;
+    }
+
+    public UserActivity() {
+        super();
+    }
+
+    public UserActivity(User activityUser, Trip activityTrip,
+                        String activityType) {
+        setUser(activityUser);
+        setTrip(activityTrip);
+        setType(ActivityType.valueOf(activityType));
+    }
+    /* ORAData interface */
+
+    public ORAData create(Datum d, int sqlType) throws SQLException {
+        return create(new UserActivity(), d, sqlType);
+    }
+
+    /* IUserActivity interface */
+
+    public UserActivity newInstance(IUserActivity userActivityObject) {
+        if (userActivityObject == null)
+            return null;
+        if (userActivityObject instanceof UserActivity)
+            return (UserActivity)userActivityObject;
+        User user = new User().newInstance(userActivityObject.getUser());
+        Trip trip = new Trip().newInstance(userActivityObject.getTrip());
+        return new UserActivity(user, trip,
+                                userActivityObject.getType().name());
+    }
+
+    public void setUser(IUser activityUser) {
+        try {
+            super.setActivityUser(new User().newInstance(activityUser));
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+    }
+
+    public User getUser() {
+        User user = null;
+        try {
+            user = super.getActivityUser();
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+        return user;
+    }
+
+    public void setTrip(ITrip activityTrip) {
+        try {
+            super.setActivityTrip(new Trip().newInstance(activityTrip));
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+    }
+
+    public Trip getTrip() {
+        Trip trip = null;
+        try {
+            trip = super.getActivityTrip();
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+        return trip;
+    }
+
+    public void setType(ActivityType activityType) {
+        try {
+            super.setActivityType(activityType.name());
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+    }
+
+    public ActivityType getType() {
+        ActivityType type = null;
+        try {
+            type =
+IUserActivity.ActivityType.valueOf(super.getActivityTypeName());
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+        return type;
+    }
+
+    public UserActivityRef getRef() throws SQLException {
+        UserActivityRef ref = new UserActivityRef();
+        ref.setValue(this);
+        return ref;
+    }
+
+    public void setRef(UserActivityRef ref) throws SQLException {
+        ref.setValue(this);
+    }
+}

@@ -1,0 +1,87 @@
+#
+# The proxy to the Glacier2 router for all outgoing connections. This 
+# must match the value of Glacier2.Client.Endpoints in config.glacier2
+Ice.Default.Router = CardroidGlacier2/router : ssl -h 212.122.102.149 -p 4063
+
+CardroidRegistration.Endpoints = Registration : ssl -p 6535 -h 212.122.102.149
+
+#
+# We don't need any endpoints for the client if we use a 
+# router. Incoming requests are received through connections 
+# established from the client to the router.
+#
+Cardroid.Client.Endpoints =
+
+#
+# Disable connection management to ensure the connection remains open 
+# for the lifetime of the Glacier2 session. Because of the session interfaces, 
+# no active connection management is permitted. Connections must remain 
+# established.
+#
+Ice.ACM.Client = 0
+
+#
+# Connection retry is not possible with Glacier2: the Glacier2 session 
+# is bound to the connection. Because of the session interfaces, no active
+# connection management is permitted. Connections must remain established.
+#
+Ice.RetryIntervals = -1
+
+#
+# Warn about connection exceptions
+#
+Ice.Warn.Connections = 1
+
+#
+# Network Tracing
+#
+# 0 = no network tracing
+# 1 = trace connection establishment and closure
+# 2 = like 1, but more detailed
+# 3 = like 2, but also trace data transfer
+#
+Ice.Trace.Network = 1
+
+#
+# Protocol Tracing
+#
+# 0 = no protocol tracing
+# 1 = trace protocol messages
+#
+Ice.Trace.Protocol = 1
+
+#
+# Security Tracing
+#
+# 0 = no security tracing
+# 1 = trace messages
+#
+Ice.SSl.Trace.Security = 1
+
+#
+# SSL Configuration
+#
+Ice.Plugin.IceSSL = IceSSL.PluginFactory
+IceSSL.DefaultDir = certs
+IceSSL.Truststore = client.bks
+IceSSL.Password = password
+IceSSL.VerifyPeer = 2
+#IceSSL.TrustOnly.Client = C = ES, ST = Castilla-La Mancha, L = Ciudad Real, O = UCLM, OU = ESI, CN = Cardroid
+
+#
+# IceMX configuration.
+#
+Ice.Admin.Endpoints = tcp -h localhost -p 5557
+Ice.Admin.InstanceName = CardroidClient
+IceMX.Metrics.Debug.GroupBy = id
+IceMX.Metrics.ByParent.GroupBy = parent
+
+#
+# Slice format
+#
+Ice.Default.SlicedFormat = 1
+
+#
+# Java package configuration properties
+#
+Ice.Package.cardroid = uclm.esi

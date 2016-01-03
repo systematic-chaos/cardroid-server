@@ -1,0 +1,359 @@
+/*@lineinfo:filename=TripRequest*/ /*@lineinfo:user-code*/ /*@lineinfo:1^1*/package uclm.esi.cardroid.data.oracle;
+
+import java.sql.SQLException;
+import java.sql.Connection;
+
+import oracle.sql.ORAData;
+import oracle.sql.ORADataFactory;
+import oracle.sql.Datum;
+
+import sqlj.runtime.ref.DefaultContext;
+
+import uclm.esi.cardroid.data.IDateTimePrefs;
+import uclm.esi.cardroid.data.ITripRequest;
+import uclm.esi.cardroid.data.IUser;
+
+public class TripRequest extends TripRequestTyp implements ORAData,
+                                                           ORADataFactory,
+                                                           ITripRequest {
+    private static final TripRequest _TripRequestFactory = new TripRequest();
+
+    public static ORADataFactory getORADataFactory() {
+        return _TripRequestFactory;
+    }
+
+    public TripRequest() {
+        super();
+    }
+
+    public TripRequest(Connection conn) throws SQLException {
+        super(conn);
+    }
+
+    public TripRequest(DefaultContext ctx) throws SQLException {
+        super(ctx);
+    }
+
+    public TripRequest(Place from, Place to, DateTimePrefs datetime,
+                       User requester, int requestedSeats) {
+        setFromPlace(from);
+        setToPlace(to);
+        setDateTime(datetime);
+        setRequester(requester);
+        setNSeats(requestedSeats);
+    }
+
+    public TripRequest(Place from, Place to, DateTimePrefs datetime,
+                       DateTimePrefs returnDateTime, User requester,
+                       int requestedSeats) {
+        setFromPlace(from);
+        setToPlace(to);
+        setDateTime(datetime);
+        setReturnDateTime(returnDateTime);
+        setRequester(requester);
+        setNSeats(requestedSeats);
+    }
+
+    public TripRequest(Place from, Place to, DateTimePrefs datetime,
+                       User requester, int requestedSeats,
+                       Trip_WeekDaysVarray weekDays, String periodicity) {
+        setFromPlace(from);
+        setToPlace(to);
+        setDateTime(datetime);
+        setRequester(requester);
+        setNSeats(requestedSeats);
+        setWeekDays(weekDays);
+        setPeriodicity(periodicity);
+    }
+
+    public TripRequest(Place from, Place to, DateTimePrefs datetime,
+                       DateTimePrefs returnDatetime, User requester,
+                       int requestedSeats, Trip_WeekDaysVarray weekDays,
+                       String periodicity) {
+        setFromPlace(from);
+        setToPlace(to);
+        setDateTime(datetime);
+        setReturnDateTime(returnDatetime);
+        setRequester(requester);
+        setNSeats(requestedSeats);
+        setWeekDays(weekDays);
+        setPeriodicity(periodicity);
+    }
+
+    public TripRequest(Place fromPlace, Place toPlace, DateTimePrefs datetime,
+                       int nSeats, DateTimePrefs returnDatetime,
+                       Trip_WeekDaysVarray weekDays, String periodicity,
+                       int distance, String characteristics, User requester) {
+        setFromPlace(fromPlace);
+        setToPlace(toPlace);
+        setDateTime(datetime);
+        setNSeats(nSeats);
+        setReturnDateTime(returnDatetime);
+        setWeekDays(weekDays);
+        setPeriodicity(periodicity);
+        setDistance(distance);
+        setCharacteristics(characteristics);
+        setRequester(requester);
+    }
+
+    /* ORAData interface */
+
+    protected ORAData createExact(Datum d, int sqlType) throws SQLException {
+        return create(new TripRequest(), d, sqlType);
+    }
+
+    /* TripRequestInterface interface */
+
+    public TripRequest newInstance(ITripRequest tripRequestObject) {
+        if (tripRequestObject == null)
+            return null;
+        if (tripRequestObject instanceof TripRequest)
+            return (TripRequest)tripRequestObject;
+        Place from = new Place().newInstance(tripRequestObject.getFromPlace());
+        Place to = new Place().newInstance(tripRequestObject.getToPlace());
+        DateTimePrefs datetime =
+            new DateTimePrefs().newInstance(tripRequestObject.getDateTime());
+        DateTimePrefs returnDatetime =
+            new DateTimePrefs().newInstance(tripRequestObject.getReturnDateTime());
+        char[] weekDaysChar = tripRequestObject.getWeekDays();
+        String[] weekDaysStr = new String[weekDaysChar.length];
+        for (int n = 0; n < weekDaysStr.length; n++) {
+            weekDaysStr[0] = String.valueOf(weekDaysChar[n]);
+        }
+        Trip_WeekDaysVarray weekDays = new Trip_WeekDaysVarray(weekDaysStr);
+        User requester =
+            new User().newInstance(tripRequestObject.getRequester());
+        return new TripRequest(from, to, datetime,
+                               tripRequestObject.getNSeats(), returnDatetime,
+                               weekDays,
+                               tripRequestObject.getPeriodicity().name(),
+                               tripRequestObject.getDistance(),
+                               tripRequestObject.getCharacteristics(),
+                               requester);
+    }
+
+    public void setDateTime(IDateTimePrefs dateTimePrefsObject) {
+        try {
+            super.setDatetime(new DateTimePrefs().newInstance(dateTimePrefsObject));
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+    }
+
+    @Override
+    public DateTimePrefs getDateTime() {
+        DateTimePrefs datetime = null;
+        try {
+            datetime = (DateTimePrefs)super.getDatetime();
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+        return datetime;
+    }
+
+    public void setReturnDateTime(IDateTimePrefs dateTimePrefsObject) {
+        try {
+            super.setReturnDatetime(new DateTimePrefs().newInstance(dateTimePrefsObject));
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+    }
+
+    @Override
+    public DateTimePrefs getReturnDateTime() {
+        DateTimePrefs returnDatetime = null;
+        try {
+            returnDatetime = (DateTimePrefs)super.getReturnDatetime();
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+        return returnDatetime;
+    }
+
+    public void setRequester(IUser requester) {
+        try {
+            super.setTripRequester(new User().newInstance(requester));
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+    }
+
+    public User getRequester() {
+        User user = null;
+        try {
+            user = super.getRequester();
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+        return user;
+    }
+
+
+    /* superclass methods */
+
+    public java.sql.Timestamp compareTo() throws java.sql.SQLException {
+
+        java.sql.Timestamp __jRt_0 = null;
+        try {
+            __jRt_0 = super.compareTo();
+
+        } catch (java.sql.SQLException except) {
+            except.printStackTrace();
+            throw new java.sql.SQLException(except.getClass().getName() +
+                                            ": " + except.getMessage());
+        }
+        return __jRt_0;
+    }
+
+    public uclm.esi.cardroid.data.oracle.DateTimePrefstripRequestTyp_Out tripRequestTyp(Place fromPlace,
+                                                                                        Place toPlace,
+                                                                                        DateTimePrefs datetime,
+                                                                                        DateTimePrefs returnDatetime,
+                                                                                        User requester,
+                                                                                        int requestedSeats,
+                                                                                        Trip_WeekDaysVarray weekDays,
+                                                                                        String periodicity) throws java.sql.SQLException {
+
+        TripRequest __jRt_0 = null;
+        uclm.esi.cardroid.data.oracle.DateTimePrefstripRequestTyp_Out __jRt_736 =
+            new uclm.esi.cardroid.data.oracle.DateTimePrefstripRequestTyp_Out();
+        try {
+            String __jRt_732 = periodicity;
+            Trip_WeekDaysVarray __jRt_730 = weekDays;
+            int __jRt_728 = requestedSeats;
+            User __jRt_726 = requester;
+            DateTimePrefs __jRt_724 = returnDatetime;
+            DateTimePrefs __jRt_722 = datetime;
+            Place __jRt_720 = toPlace;
+            Place __jRt_718 = fromPlace;
+            TripRequest[] __jRt_734 = new TripRequest[1];
+            __jRt_0 =
+                    super.tripRequestTyp(__jRt_718, __jRt_720, __jRt_722, __jRt_724,
+                                         __jRt_726, __jRt_728, __jRt_730,
+                                         __jRt_732, __jRt_734);
+            __jRt_736.setJptOut(__jRt_734[0]);
+            __jRt_736.setReturn(__jRt_0);
+
+        } catch (java.sql.SQLException except) {
+            except.printStackTrace();
+            throw new java.sql.SQLException(except.getClass().getName() +
+                                            ": " + except.getMessage());
+        }
+        return __jRt_736;
+    }
+
+    public uclm.esi.cardroid.data.oracle.DateTimePrefstripRequestTyp_Out7 tripRequestTyp(Place fromPlace,
+                                                                                         Place toPlace,
+                                                                                         DateTimePrefs datetime,
+                                                                                         User requester,
+                                                                                         int requestedSeats,
+                                                                                         Trip_WeekDaysVarray weekDays,
+                                                                                         String periodicity) throws java.sql.SQLException {
+
+        TripRequest __jRt_0 = null;
+        uclm.esi.cardroid.data.oracle.DateTimePrefstripRequestTyp_Out7 __jRt_753 =
+            new uclm.esi.cardroid.data.oracle.DateTimePrefstripRequestTyp_Out7();
+        try {
+            String __jRt_749 = periodicity;
+            Trip_WeekDaysVarray __jRt_747 = weekDays;
+            int __jRt_745 = requestedSeats;
+            User __jRt_743 = requester;
+            DateTimePrefs __jRt_741 = datetime;
+            Place __jRt_739 = toPlace;
+            Place __jRt_737 = fromPlace;
+            TripRequest[] __jRt_751 = new TripRequest[1];
+            __jRt_0 =
+                    super.tripRequestTyp(__jRt_737, __jRt_739, __jRt_741, __jRt_743,
+                                         __jRt_745, __jRt_747, __jRt_749,
+                                         __jRt_751);
+            __jRt_753.setJptOut(__jRt_751[0]);
+            __jRt_753.setReturn(__jRt_0);
+
+        } catch (java.sql.SQLException except) {
+            except.printStackTrace();
+            throw new java.sql.SQLException(except.getClass().getName() +
+                                            ": " + except.getMessage());
+        }
+        return __jRt_753;
+    }
+
+    public uclm.esi.cardroid.data.oracle.DateTimePrefstripRequestTyp_Out8 tripRequestTyp(Place fromPlace,
+                                                                                         Place toPlace,
+                                                                                         DateTimePrefs datetime,
+                                                                                         User requester,
+                                                                                         int requestedSeats) throws java.sql.SQLException {
+
+        TripRequest __jRt_0 = null;
+        uclm.esi.cardroid.data.oracle.DateTimePrefstripRequestTyp_Out8 __jRt_766 =
+            new uclm.esi.cardroid.data.oracle.DateTimePrefstripRequestTyp_Out8();
+        try {
+            int __jRt_762 = requestedSeats;
+            User __jRt_760 = requester;
+            DateTimePrefs __jRt_758 = datetime;
+            Place __jRt_756 = toPlace;
+            Place __jRt_754 = fromPlace;
+            TripRequest[] __jRt_764 = new TripRequest[1];
+            __jRt_0 =
+                    super.tripRequestTyp(__jRt_754, __jRt_756, __jRt_758, __jRt_760,
+                                         __jRt_762, __jRt_764);
+            __jRt_766.setJptOut(__jRt_764[0]);
+            __jRt_766.setReturn(__jRt_0);
+
+        } catch (java.sql.SQLException except) {
+            except.printStackTrace();
+            throw new java.sql.SQLException(except.getClass().getName() +
+                                            ": " + except.getMessage());
+        }
+        return __jRt_766;
+    }
+
+    public uclm.esi.cardroid.data.oracle.DateTimePrefstripRequestTyp_Out9 tripRequestTyp(Place fromPlace,
+                                                                                         Place toPlace,
+                                                                                         DateTimePrefs datetime,
+                                                                                         DateTimePrefs returnDatetime,
+                                                                                         User requester,
+                                                                                         int requestedSeats) throws java.sql.SQLException {
+
+        TripRequest __jRt_0 = null;
+        uclm.esi.cardroid.data.oracle.DateTimePrefstripRequestTyp_Out9 __jRt_781 =
+            new uclm.esi.cardroid.data.oracle.DateTimePrefstripRequestTyp_Out9();
+        try {
+            int __jRt_777 = requestedSeats;
+            User __jRt_775 = requester;
+            DateTimePrefs __jRt_773 = returnDatetime;
+            DateTimePrefs __jRt_771 = datetime;
+            Place __jRt_769 = toPlace;
+            Place __jRt_767 = fromPlace;
+            TripRequest[] __jRt_779 = new TripRequest[1];
+            __jRt_0 =
+                    super.tripRequestTyp(__jRt_767, __jRt_769, __jRt_771, __jRt_773,
+                                         __jRt_775, __jRt_777, __jRt_779);
+            __jRt_781.setJptOut(__jRt_779[0]);
+            __jRt_781.setReturn(__jRt_0);
+
+        } catch (java.sql.SQLException except) {
+            except.printStackTrace();
+            throw new java.sql.SQLException(except.getClass().getName() +
+                                            ": " + except.getMessage());
+        }
+        return __jRt_781;
+    }
+
+    public TripRequestRef getTripRequestRef() {
+        TripRequestRef ref = new TripRequestRef();
+        try {
+            ref.setValue(this);
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+        return ref;
+    }
+
+    public void setTripRequestRef(TripRequestRef ref) {
+        try {
+            ref.setValue(this);
+        } catch (SQLException sqle) {
+            System.err.println("SQLException: " + sqle.getSQLState());
+        }
+    }
+}/*@lineinfo:generated-code*/

@@ -1,0 +1,54 @@
+package uclm.esi.cardroid.data;
+
+public interface ITripOffer extends ITrip {
+
+    public ITripOffer newInstance(ITripOffer tripOfferObject);
+
+    public void setDateTime(IDateTime datetime);
+
+    public IDateTime getDateTime();
+
+    public void setReturnDateTime(IDateTime returnDatetime);
+
+    public IDateTime getReturnDateTime();
+
+    public void setDriver(IUser driver);
+
+    public IUser getDriver();
+
+    public void setWaypoints(IPlace[] waypoints);
+
+    public IPlace[] getWaypoints();
+
+    public boolean addWaypoint(IPlace waypoint);
+
+    public boolean removeWaypoint(int pos);
+
+    public void clearWaypoints();
+
+    public int getNWaypoints();
+
+    public void setCar(ICar car);
+
+    public ICar getCar();
+
+    public void setPassengers(IUser[] passengers);
+
+    public IUser[] getPassengers();
+
+    public boolean addPassenger(IUser passenger);
+
+    public boolean removePassenger(IUser passenger);
+
+    public void clearPassengers();
+
+    public int getNPassengers();
+
+    public void setPrice(double price);
+
+    public double getPrice();
+
+    public void setAllowed(boolean[] allowed);
+
+    public boolean[] getAllowed();
+}
